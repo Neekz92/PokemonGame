@@ -1,0 +1,109 @@
+package POIs;
+
+import GameEngine.Battle;
+import GameEngine.GameEngine;
+import Pokemon.*;
+
+public class TallGrass extends POI {
+
+    public TallGrass(GameEngine gameEngine) {
+
+        super(gameEngine);
+        setName("Tall Grass");
+    }
+
+    public void execute() {
+
+        if (!hasOngoingBattle) {
+            battle = new Battle();
+            hasOngoingBattle = true;
+            player = gameEngine.getPlayer();
+            player.isInBattle = true;
+            player.battle = battle;
+            player.getLocation().poi = this;
+            wildEncounterSetup();
+        }
+    }
+
+    public void wildEncounterSetup() {
+
+        int rollLevel = random.nextInt(3, 5);
+        Pokemon pidgey = new Pidgey(gameEngine, rollLevel);
+        Pokemon rattata = new Rattata(gameEngine, rollLevel);
+        Pokemon oddish = new Oddish(gameEngine, rollLevel);
+        Pokemon bellsprout = new Bellsprout(gameEngine, rollLevel);
+
+        int rngEncounter = random.nextInt(1, 10);
+        if (rngEncounter <= 3) {
+            System.out.println("A wild " + pidgey + " has appeared!");
+            pidgey.setLocation(player.getLocation());
+            battle.addToRawPokemonArray(pidgey);
+            battle.incomingPokemon_wild = pidgey;
+            pidgey.battle = battle;
+
+            player.setSelectedPokemon(player.team[0]);
+            battle.addToRawPokemonArray(player.getSelectedPokemon());
+            battle.incomingPokemon_fromTrainer = player.getSelectedPokemon();
+
+            System.out.println("Go! " + player.getSelectedPokemon() + "!");
+            System.out.println("");
+            System.out.println("");
+
+            gameEngine.turnOrder();
+
+        } else if (rngEncounter <= 6) {
+            System.out.println("A wild " + rattata + " has appeared!");
+            rattata.setLocation(player.getLocation());
+            battle.addToRawPokemonArray(rattata);
+            battle.incomingPokemon_wild = rattata;
+            rattata.battle = battle;
+
+            player.setSelectedPokemon(player.team[0]);
+            battle.addToRawPokemonArray(player.getSelectedPokemon());
+            battle.incomingPokemon_fromTrainer = player.getSelectedPokemon();
+
+            System.out.println("Go! " + player.getSelectedPokemon() + "!");
+            System.out.println("");
+            System.out.println("");
+
+            gameEngine.turnOrder();
+
+
+        } else if (rngEncounter <= 8) {
+            System.out.println("A wild " + oddish + " has appeared!");
+            oddish.setLocation(player.getLocation());
+            battle.addToRawPokemonArray(oddish);
+            battle.incomingPokemon_wild = oddish;
+            oddish.battle = battle;
+
+            player.setSelectedPokemon(player.team[0]);
+            battle.addToRawPokemonArray(player.getSelectedPokemon());
+            battle.incomingPokemon_fromTrainer = player.getSelectedPokemon();
+
+            System.out.println("Go! " + player.getSelectedPokemon() + "!");
+            System.out.println("");
+            System.out.println("");
+
+            gameEngine.turnOrder();
+
+
+        } else {
+            System.out.println("A wild " + bellsprout + " has appeared!");
+            bellsprout.setLocation(player.getLocation());
+            battle.addToRawPokemonArray(bellsprout);
+            battle.incomingPokemon_wild = bellsprout;
+            bellsprout.battle = battle;
+
+            player.setSelectedPokemon(player.team[0]);
+            battle.addToRawPokemonArray(player.getSelectedPokemon());
+            battle.incomingPokemon_fromTrainer = player.getSelectedPokemon();
+
+            System.out.println("Go! " + player.getSelectedPokemon() + "!");
+            System.out.println("");
+            System.out.println("");
+
+            gameEngine.turnOrder();
+
+        }
+    }
+}
