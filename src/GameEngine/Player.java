@@ -284,24 +284,10 @@ public class Player {
 
         battle = location.poi.getBattle();
 
-
-
-
-
-//        for (int i = 0; i < battle.playerArray.length; i ++) {
-//            System.out.println((i + 1) + " " + battle.playerArray[i]);
-//        }
-
-
-
-
-
-        activePokemon = (Pokemon) battle.rawPokemonArray[1];
-
-        System.out.println(battle.rawPokemonArray[0] + " | Level: " + battle.rawPokemonArray[0].getLevel() + " | HP: " + battle.rawPokemonArray[0].getCurrentHP() + "/ " + battle.rawPokemonArray[0].getHp());
+        System.out.println(battle.rawPokemonArray[1] + " | Level: " + battle.rawPokemonArray[1].getLevel() + " | HP: " + battle.rawPokemonArray[1].getCurrentHP() + "/ " + battle.rawPokemonArray[0].getHp());
         System.out.println("===============================");
         System.out.println("");
-        System.out.println("          " + battle.rawPokemonArray[1] + " | Level: " + battle.rawPokemonArray[1].getLevel() + " | HP: " + battle.rawPokemonArray[1].getCurrentHP() + "/ " + battle.rawPokemonArray[1].getHp());
+        System.out.println("          " + battle.rawPokemonArray[0] + " | Level: " + battle.rawPokemonArray[0].getLevel() + " | HP: " + battle.rawPokemonArray[0].getCurrentHP() + "/ " + battle.rawPokemonArray[0].getHp());
         System.out.println("=========================================");
         System.out.println("");
         System.out.println("          " + "[ 1 ] FIGHT  [ 2 ] PkMn");

@@ -4,6 +4,8 @@ import Pokemon.Pokemon;
 
 public class Battle {
 
+    private Player player;
+
     public Pokemon incomingPokemon_fromTrainer;
     public Pokemon incomingPokemon_wild;
 
@@ -130,6 +132,14 @@ public class Battle {
         }
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     public boolean areNpcFainted() {
 
         for (int i = 0; i < battleArray.length; i++) {
@@ -149,11 +159,11 @@ public class Battle {
                 currentMon = battleArray[i];
                 System.out.println(currentMon.getName() + " gained 17 EXP. Points!");
                 removeFromBattleArray(currentMon);
+                player.isInBattle = false;
 
                 if (battleArray.length == 0) {
                     for (int j = 0; j < rawPokemonArray.length; j++) {
                         rawPokemonArray[j].isInBattle = false;
-                        System.out.println("playerArray.length = " + rawPokemonArray.length + " name: " + rawPokemonArray[j].getName() + " is in battle: " + rawPokemonArray[j].isInBattle);
                         rawPokemonArray[j].setActivePokemon(null);
                     }
                 }

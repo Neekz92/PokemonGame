@@ -21,6 +21,13 @@ public class TallGrass extends POI {
             player.isInBattle = true;
             player.battle = battle;
             player.getLocation().poi = this;
+            battle.setPlayer(player);
+
+            player.setSelectedPokemon(player.team[0]);
+            battle.addToRawPokemonArray(player.getSelectedPokemon());
+            battle.incomingPokemon_fromTrainer = player.getSelectedPokemon();
+            player.setActivePokemon(player.getSelectedPokemon());
+
             wildEncounterSetup();
         }
     }
@@ -41,9 +48,6 @@ public class TallGrass extends POI {
             battle.incomingPokemon_wild = pidgey;
             pidgey.battle = battle;
 
-            player.setSelectedPokemon(player.team[0]);
-            battle.addToRawPokemonArray(player.getSelectedPokemon());
-            battle.incomingPokemon_fromTrainer = player.getSelectedPokemon();
 
             System.out.println("Go! " + player.getSelectedPokemon() + "!");
             System.out.println("");
@@ -57,10 +61,6 @@ public class TallGrass extends POI {
             battle.addToRawPokemonArray(rattata);
             battle.incomingPokemon_wild = rattata;
             rattata.battle = battle;
-
-            player.setSelectedPokemon(player.team[0]);
-            battle.addToRawPokemonArray(player.getSelectedPokemon());
-            battle.incomingPokemon_fromTrainer = player.getSelectedPokemon();
 
             System.out.println("Go! " + player.getSelectedPokemon() + "!");
             System.out.println("");
@@ -76,10 +76,6 @@ public class TallGrass extends POI {
             battle.incomingPokemon_wild = oddish;
             oddish.battle = battle;
 
-            player.setSelectedPokemon(player.team[0]);
-            battle.addToRawPokemonArray(player.getSelectedPokemon());
-            battle.incomingPokemon_fromTrainer = player.getSelectedPokemon();
-
             System.out.println("Go! " + player.getSelectedPokemon() + "!");
             System.out.println("");
             System.out.println("");
@@ -93,10 +89,6 @@ public class TallGrass extends POI {
             battle.addToRawPokemonArray(bellsprout);
             battle.incomingPokemon_wild = bellsprout;
             bellsprout.battle = battle;
-
-            player.setSelectedPokemon(player.team[0]);
-            battle.addToRawPokemonArray(player.getSelectedPokemon());
-            battle.incomingPokemon_fromTrainer = player.getSelectedPokemon();
 
             System.out.println("Go! " + player.getSelectedPokemon() + "!");
             System.out.println("");

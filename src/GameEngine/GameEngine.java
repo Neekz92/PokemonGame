@@ -74,6 +74,7 @@ public class GameEngine {
             for (int i = 0; i < amountOfPlayers; i++) {
                 if (!playerArray[i].isInBattle) {
                     playerArray[i].gameEngine.standardTurn();
+
                     playerArray[i].gameEngine.activateLocation();
                 }
                 else {
