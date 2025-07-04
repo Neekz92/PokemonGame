@@ -20,11 +20,17 @@ public class ProfessorOaksLab extends POI {
 
         if (!gameEngine.getPlayer().receivedStarter) {
             System.out.println("Professor Oak: \"Here " + gameEngine.getPlayer().getName() + "!\"");
+            GameEngine.delay(500);
             System.out.println("Professor Oak: \"There are 3 POKeMON here!\"");
+            GameEngine.delay(500);
             System.out.println("Professor Oak: \"Haha!\"");
+            GameEngine.delay(500);
             System.out.println("Professor Oak: \"They are inside the POKE BALLs.\"");
+            GameEngine.delay(500);
             System.out.println("Professor Oak: \"When I was young, I was a serious POKeMON trainer!\"");
+            GameEngine.delay(500);
             System.out.println("Professor Oak: \"In my old age, I have only 3 left, but you can have one!\"");
+            GameEngine.delay(500);
             System.out.println("Professor Oak: \"Choose!\"");
             System.out.println("");
 

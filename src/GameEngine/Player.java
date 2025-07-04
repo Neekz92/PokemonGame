@@ -93,8 +93,9 @@ public class Player {
                 gameEngine.scanner.nextLine();
 
                 if (input == 0) {
+                    selectedPOI = null;
                     inputLoop = false;
-                    break;
+                    return null;
                 }
 
                 selectedPOI = getLocation().poiArray[input - 1];
@@ -430,11 +431,7 @@ public class Player {
                 System.out.println("**************************************************");
                 System.out.println("");
 
-                try {
-                    Thread.sleep(1000);  // 1000 ms = 1 second
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                GameEngine.delay(750);
 
                 faint(currentMon.getSelectedTarget());
             }

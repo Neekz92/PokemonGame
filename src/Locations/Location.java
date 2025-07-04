@@ -66,7 +66,7 @@ public class Location {
             playerArrayClone[i] = playerArray[i];
         }
 
-        for (int i = findIndex(player); i < playerArray.length; i++) {
+        for (int i = findIndex(player); i < playerArrayClone.length; i++) {
             playerArrayClone[i] = playerArray[i + 1];
         }
 
@@ -120,5 +120,9 @@ public class Location {
 
     public String toString() {
         return name;
+    }
+
+    public void updateHouseName() {
+
     }
 }

@@ -25,6 +25,10 @@ public class Map {
         addLocation(route1);
     }
 
+    public Location getPalletTown() {
+        return palletTown;
+    }
+
     private void addLocation(Location location) {
 
         amountOfLocations ++;

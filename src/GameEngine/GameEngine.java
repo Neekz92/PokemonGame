@@ -1,6 +1,6 @@
 package GameEngine;
 
-import Locations.Map;
+import Locations.*;
 
 import java.util.Scanner;
 
@@ -45,11 +45,17 @@ public class GameEngine {
         currentPlayer.isNpc = false;
 
         System.out.println("Professor Oak: \"Hello there! Welcome to the world of POKeMON!\"");
+        GameEngine.delay(500);
         System.out.println("Professor Oak: \"My name is OAK! People call me the POKeMON PROF!\"");
+        GameEngine.delay(500);
         System.out.println("Professor Oak: \"This world is inhabited by creatures called POKeMON!\"");
+        GameEngine.delay(500);
         System.out.println("Professor Oak: \"For some people, POKeMON are pets. Others use them for fights.\"");
+        GameEngine.delay(500);
         System.out.println("Professor Oak: \"Myself...\"");
+        GameEngine.delay(500);
         System.out.println("Professor Oak: \"I study POKeMON as a profession.\"");
+        GameEngine.delay(500);
         System.out.println("");
         System.out.println("Professor Oak: \"First, what is your name?\"");
 
@@ -59,8 +65,11 @@ public class GameEngine {
         addPlayer(currentPlayer);
 
         System.out.println("Professor Oak: \"Right! So your name is " + name + "!\"");
+        GameEngine.delay(500);
         System.out.println("Professor Oak: \"Your very own POKeMON legend is about to unfold!\"");
+        GameEngine.delay(500);
         System.out.println("Professor Oak: \"A world full of dreams and adventures with POKeMON await!\"");
+        GameEngine.delay(500);
         System.out.println("Professor Oak: \"Let's go!\"");
         System.out.println("");
 
@@ -100,6 +109,7 @@ public class GameEngine {
     protected void standardTurn() {
 
         displayStandardTurn();
+        map.getPalletTown().updateHouseName();
 
         boolean standardTurn = true;
         while (standardTurn) {
@@ -114,6 +124,9 @@ public class GameEngine {
                         break;
                     case 2:
                     case 3:
+                        moveSouth();
+                        standardTurn = false;
+                        break;
                     case 4:
                     case 5: standardTurn = false; break;
                     case 6: currentPlayer.startMenu(); standardTurn = false; break;
@@ -144,6 +157,25 @@ public class GameEngine {
         }
     }
 
+    private void moveSouth() {
+
+        if (currentPlayer.getLocation().getCanMoveSouth()) {
+
+            if (currentPlayer.getLocation().playerArray.length > 0) {
+                currentPlayer.getLocation().remove(currentPlayer);
+            }
+
+            currentPlayer.setY(currentPlayer.getY() - 1);
+            currentPlayer.setLocation(map.findLocation(currentPlayer));
+            currentPlayer.getLocation().add(currentPlayer);
+            System.out.println("****************************************************************");
+            System.out.println(currentPlayer.getName() + " moved south to " + currentPlayer.getLocation().getName());
+            System.out.println("****************************************************************");
+        }
+    }
+
+
+
     private void activateLocation() {
 
         for (int i = 0; i < amountOfPlayers; i++) {
@@ -154,6 +186,15 @@ public class GameEngine {
             if (currentPlayer.selectedPOI != null) {
                 currentPlayer.selectedPOI.execute();
             }
+        }
+    }
+
+    public static void delay(int delay) {
+
+        try {
+            Thread.sleep(delay);  // 1000 ms = 1 second
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
