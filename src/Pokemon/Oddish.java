@@ -13,6 +13,16 @@ public class Oddish extends Pokemon {
         setType("Grass");
         setType2("Poison");
 
+        weaknesses.add("Fire");
+        weaknesses.add("Flying");
+        weaknesses.add("Ice");
+
+        resistances.add("Water");
+        resistances.add("Grass");
+        resistances.add("Electric");
+        resistances.add("Fighting");
+        resistances.add("Fairy");
+
         setBaseHp(45);
         setBaseAtk(50);
         setBaseDef(55);

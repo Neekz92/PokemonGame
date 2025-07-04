@@ -12,6 +12,17 @@ public class Charmander extends Pokemon {
         setName(species);
         setType("Fire");
 
+        weaknesses.add("Water");
+        weaknesses.add("Ground");
+        weaknesses.add("Rock");
+
+        resistances.add("Fire");
+        resistances.add("Grass");
+        resistances.add("Ice");
+        resistances.add("Bug");
+        resistances.add("Steel");
+        resistances.add("Fairy");
+
         setBaseHp(39);
         setBaseAtk(52);
         setBaseDef(43);

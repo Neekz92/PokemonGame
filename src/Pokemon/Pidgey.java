@@ -13,6 +13,13 @@ public class Pidgey extends Pokemon {
         setType("Normal");
         setType2("Flying");
 
+        weaknesses.add("Electric");
+        weaknesses.add("Rock");
+        weaknesses.add("Ice");
+
+        resistances.add("Grass");
+        resistances.add("Bug");
+
         setBaseHp(40);
         setBaseAtk(45);
         setBaseDef(40);

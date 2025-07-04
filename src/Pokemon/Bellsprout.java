@@ -13,6 +13,16 @@ public class Bellsprout extends Pokemon {
         setType("Grass");
         setType2("Poison");
 
+        weaknesses.add("Fire");
+        weaknesses.add("Flying");
+        weaknesses.add("Ice");
+
+        resistances.add("Water");
+        resistances.add("Grass");
+        resistances.add("Electric");
+        resistances.add("Fighting");
+        resistances.add("Fairy");
+
         setBaseHp(50);
         setBaseAtk(75);
         setBaseDef(35);

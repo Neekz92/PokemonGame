@@ -13,6 +13,13 @@ public class Spearow extends Pokemon {
         setType("Normal");
         setType2("Flying");
 
+        weaknesses.add("Electric");
+        weaknesses.add("Rock");
+        weaknesses.add("Ice");
+
+        resistances.add("Grass");
+        resistances.add("Bug");
+
         setBaseHp(40);
         setBaseAtk(60);
         setBaseDef(30);
@@ -33,7 +40,6 @@ public class Spearow extends Pokemon {
 
         if (getLevel() >= 1) {
             addMoveToLearnSet(peck);
-            addMoveToLearnSet(tailWhip);
         }
 
         if (getLevel() >= 4) {

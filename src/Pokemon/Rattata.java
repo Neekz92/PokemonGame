@@ -12,6 +12,8 @@ public class Rattata extends Pokemon {
         setName(species);
         setType("Normal");
 
+        weaknesses.add("Fighting");
+
         setBaseHp(30);
         setBaseAtk(56);
         setBaseDef(35);

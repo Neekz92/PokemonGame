@@ -1,9 +1,12 @@
 package Pokemon;
 
-import GameEngine.*;
+import GameEngine.GameEngine;
+import GameEngine.Player;
 import Moves.*;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 
 public class Pokemon extends Player {
@@ -62,6 +65,11 @@ public class Pokemon extends Player {
     private int currentSpDef;
     private int spd;
     private int currentSpd;
+
+
+    public Set<String> weaknesses;
+    public Set<String> resistances;
+
 
     private int learnSetSize;
     private Move[] learnSet;
@@ -138,6 +146,9 @@ public class Pokemon extends Player {
             case 24: nature = "Naive"; break;
             case 25: nature = "Serious"; break;
         }
+
+        weaknesses = new HashSet<>();
+        resistances = new HashSet<>();
 
         learnSetSize = 0;
         learnSet = new Move[learnSetSize];

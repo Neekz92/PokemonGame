@@ -12,6 +12,15 @@ public class NidoranM extends Pokemon {
         setName(species);
         setType("Poison");
 
+        weaknesses.add("Ground");
+        weaknesses.add("Psychic");
+
+        resistances.add("Grass");
+        resistances.add("Fighting");
+        resistances.add("Poison");
+        resistances.add("Bug");
+        resistances.add("Fairy");
+
         setBaseHp(46);
         setBaseAtk(57);
         setBaseDef(40);

@@ -12,6 +12,14 @@ public class Squirtle extends Pokemon {
         setName(species);
         setType("Water");
 
+        weaknesses.add("Electric");
+        weaknesses.add("Grass");
+
+        resistances.add("Fire");
+        resistances.add("Water");
+        resistances.add("Ice");
+        resistances.add("Steel");
+
         setBaseHp(44);
         setBaseAtk(48);
         setBaseDef(65);
