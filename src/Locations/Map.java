@@ -12,6 +12,7 @@ public class Map {
     Location palletTown;
     Location route1;
     Location viridianCity;
+    Location route22;
 
     public Map(GameEngine gameEngine) {
 
@@ -22,10 +23,12 @@ public class Map {
         palletTown = new PalletTown(gameEngine);
         route1 = new Route1(gameEngine);
         viridianCity = new ViridianCity(gameEngine);
+        route22 = new Route22(gameEngine);
 
         addLocation(palletTown);
         addLocation(route1);
         addLocation(viridianCity);
+        addLocation(route22);
     }
 
     public Location getPalletTown() {

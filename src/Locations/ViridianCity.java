@@ -17,5 +17,6 @@ public class ViridianCity extends Location {
         y = 2;
 
         canMoveSouth = true;
+        canMoveWest = true;
     }
 }

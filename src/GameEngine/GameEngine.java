@@ -123,11 +123,17 @@ public class GameEngine {
                         standardTurn = false;
                         break;
                     case 2:
+                        moveEast();
+                        standardTurn = false;
+                        break;
                     case 3:
                         moveSouth();
                         standardTurn = false;
                         break;
                     case 4:
+                        moveWest();
+                        standardTurn = false;
+                        break;
                     case 5: standardTurn = false; break;
                     case 6: currentPlayer.startMenu(); standardTurn = false; break;
                     default: System.out.println("Was that a typo?"); break;
@@ -157,6 +163,23 @@ public class GameEngine {
         }
     }
 
+    private void moveEast() {
+
+        if (currentPlayer.getLocation().getCanMoveEast()) {
+
+            if (currentPlayer.getLocation().playerArray.length > 0) {
+                currentPlayer.getLocation().remove(currentPlayer);
+            }
+
+            currentPlayer.setX(currentPlayer.getX() + 1);
+            currentPlayer.setLocation(map.findLocation(currentPlayer));
+            currentPlayer.getLocation().add(currentPlayer);
+            System.out.println("****************************************************************");
+            System.out.println(currentPlayer.getName() + " moved north to " + currentPlayer.getLocation().getName());
+            System.out.println("****************************************************************");
+        }
+    }
+
     private void moveSouth() {
 
         if (currentPlayer.getLocation().getCanMoveSouth()) {
@@ -170,6 +193,23 @@ public class GameEngine {
             currentPlayer.getLocation().add(currentPlayer);
             System.out.println("****************************************************************");
             System.out.println(currentPlayer.getName() + " moved south to " + currentPlayer.getLocation().getName());
+            System.out.println("****************************************************************");
+        }
+    }
+
+    private void moveWest() {
+
+        if (currentPlayer.getLocation().getCanMoveWest()) {
+
+            if (currentPlayer.getLocation().playerArray.length > 0) {
+                currentPlayer.getLocation().remove(currentPlayer);
+            }
+
+            currentPlayer.setX(currentPlayer.getX() - 1);
+            currentPlayer.setLocation(map.findLocation(currentPlayer));
+            currentPlayer.getLocation().add(currentPlayer);
+            System.out.println("****************************************************************");
+            System.out.println(currentPlayer.getName() + " moved north to " + currentPlayer.getLocation().getName());
             System.out.println("****************************************************************");
         }
     }
