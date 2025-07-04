@@ -36,7 +36,9 @@ public class ViridianCityPokeCenter extends POI {
                 switch(input) {
                     case 1:
                         System.out.println("OK. We'll need your POKeMON.");
-                        GameEngine.delay(4000);
+                        GameEngine.delay(750);
+                        System.out.println("...");
+                        GameEngine.delay(3000);
                         System.out.println("Thank you! Your pokemon are");
                         GameEngine.delay(750);
                         System.out.println("fighting fit!");
