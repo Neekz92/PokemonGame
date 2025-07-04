@@ -14,6 +14,7 @@ public class Map {
     Location viridianCity;
     Location route22;
     Location route2;
+    Location viridianForest;
 
     public Map(GameEngine gameEngine) {
 
@@ -26,12 +27,14 @@ public class Map {
         viridianCity = new ViridianCity(gameEngine);
         route22 = new Route22(gameEngine);
         route2 = new Route2(gameEngine);
+        viridianForest = new ViridianForest(gameEngine);
 
         addLocation(palletTown);
         addLocation(route1);
         addLocation(viridianCity);
         addLocation(route22);
         addLocation(route2);
+        addLocation(viridianForest);
     }
 
     public Location getPalletTown() {

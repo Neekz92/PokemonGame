@@ -103,6 +103,14 @@ public class Pokemon extends Player {
 
     public static Move stringShot = new StringShot();
 
+    public static Move charm = new Charm();
+    public static Move nastyPlot = new NastyPlot();
+    public static Move nuzzle = new Nuzzle();
+    public static Move playNice = new PlayNice();
+    public static Move sweetKiss = new SweetKiss();
+    public static Move thunderShock = new ThunderShock();
+    public static Move thunderWave = new ThunderWave();
+
     // the constructor lies below
     public Pokemon(GameEngine gameEngine, int xp) {
 
