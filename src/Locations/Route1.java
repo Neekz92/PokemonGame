@@ -16,6 +16,7 @@ public class Route1 extends Location {
         x = 0;
         y = 1;
 
+        canMoveNorth = true;
         canMoveSouth = true;
 
 

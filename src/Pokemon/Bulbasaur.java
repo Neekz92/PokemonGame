@@ -22,6 +22,8 @@ public class Bulbasaur extends Pokemon {
 
         updateLevel();
         setStats();
+        restore();
+
         setNature();
         updateLearnSet();
         setupMoves();

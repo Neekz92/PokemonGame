@@ -11,6 +11,7 @@ public class Map {
     Location[] locationArray;
     Location palletTown;
     Location route1;
+    Location viridianCity;
 
     public Map(GameEngine gameEngine) {
 
@@ -20,9 +21,11 @@ public class Map {
         locationArray = new Location[amountOfLocations];
         palletTown = new PalletTown(gameEngine);
         route1 = new Route1(gameEngine);
+        viridianCity = new ViridianCity(gameEngine);
 
         addLocation(palletTown);
         addLocation(route1);
+        addLocation(viridianCity);
     }
 
     public Location getPalletTown() {

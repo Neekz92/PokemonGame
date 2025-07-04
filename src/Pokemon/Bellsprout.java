@@ -22,6 +22,8 @@ public class Bellsprout extends Pokemon {
 
         updateLevel();
         setStats();
+        restore();
+
         setNature();
         updateLearnSet();
         setupMoves();

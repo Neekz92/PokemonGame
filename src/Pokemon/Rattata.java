@@ -21,6 +21,8 @@ public class Rattata extends Pokemon {
 
         updateLevel();
         setStats();
+        restore();
+
         setNature();
         updateLearnSet();
         setupMoves();

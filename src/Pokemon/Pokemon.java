@@ -154,17 +154,22 @@ public class Pokemon extends Player {
         else if (xp < 57) {
             if (ot != null && level == 1) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 2;
+
         } else if (xp < 96) {
             if (ot != null && level == 2) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 3;
+
         }
         else if (xp < 135) {
             if (ot != null && level == 3) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 4;
 
@@ -172,6 +177,7 @@ public class Pokemon extends Player {
         else if (xp < 179) {
             if (ot != null && level == 4) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 5;
 
@@ -179,6 +185,7 @@ public class Pokemon extends Player {
         else if (xp < 236) {
             if (ot != null && level == 5) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 6;
 
@@ -186,6 +193,7 @@ public class Pokemon extends Player {
         else if (xp < 314) {
             if (ot != null && level == 6) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 7;
 
@@ -193,6 +201,7 @@ public class Pokemon extends Player {
         else if (xp < 419) {
             if (ot != null && level == 7) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 8;
 
@@ -200,6 +209,7 @@ public class Pokemon extends Player {
         else if (xp < 560) {
             if (ot != null && level == 8) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 9;
 
@@ -207,6 +217,7 @@ public class Pokemon extends Player {
         else if (xp < 742) {
             if (ot != null && level == 9) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 10;
 
@@ -214,6 +225,7 @@ public class Pokemon extends Player {
         else if (xp < 973) {
             if (ot != null && level == 10) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 11;
 
@@ -221,6 +233,7 @@ public class Pokemon extends Player {
         else if (xp < 1261) {
             if (ot != null && level == 11) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 12;
 
@@ -228,6 +241,7 @@ public class Pokemon extends Player {
         else if (xp < 1612) {
             if (ot != null && level == 12) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 13;
 
@@ -235,6 +249,7 @@ public class Pokemon extends Player {
         else if (xp < 2025) {
             if (ot != null && level == 13) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 14;
 
@@ -242,6 +257,7 @@ public class Pokemon extends Player {
         else if (xp < 2506) {
             if (ot != null && level == 14) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 15;
 
@@ -249,6 +265,7 @@ public class Pokemon extends Player {
         else if (xp < 3064) {
             if (ot != null && level == 15) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 16;
 
@@ -256,6 +273,7 @@ public class Pokemon extends Player {
         else if (xp < 3703) {
             if (ot != null && level == 16) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 17;
 
@@ -263,6 +281,7 @@ public class Pokemon extends Player {
         else if (xp < 4429) {
             if (ot != null && level == 17) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 18;
 
@@ -270,6 +289,7 @@ public class Pokemon extends Player {
         else if (xp < 5248) {
             if (ot != null && level == 18) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 19;
 
@@ -277,6 +297,7 @@ public class Pokemon extends Player {
         else {
             if (ot != null && level == 19) {
                 System.out.println(name + " grew to level " + (level + 1) + "!");
+                restore();
             }
             level = 20;
 
@@ -290,8 +311,6 @@ public class Pokemon extends Player {
         setSpAtk();
         setSpDef();
         setSpd();
-
-        restore();
     }
 
     public void setNature() {

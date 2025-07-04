@@ -22,6 +22,8 @@ public class Oddish extends Pokemon {
 
         updateLevel();
         setStats();
+        restore();
+
         setNature();
         updateLearnSet();
         setupMoves();

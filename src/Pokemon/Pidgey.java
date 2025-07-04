@@ -22,6 +22,8 @@ public class Pidgey extends Pokemon {
 
         updateLevel();
         setStats();
+        restore();
+
         setNature();
         updateLearnSet();
         setupMoves();
