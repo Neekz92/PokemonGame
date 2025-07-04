@@ -4,9 +4,9 @@ import GameEngine.GameEngine;
 
 public class Pidgey extends Pokemon {
 
-    public Pidgey(GameEngine gameEngine, int level) {
+    public Pidgey(GameEngine gameEngine, int xp) {
 
-        super(gameEngine, level);
+        super(gameEngine, xp);
 
         species = "PIDGEY";
         setName(species);
@@ -20,7 +20,9 @@ public class Pidgey extends Pokemon {
         setBaseSpdef(35);
         setBaseSpd(56);
 
+        updateLevel();
         setStats();
+        setNature();
         updateLearnSet();
         setupMoves();
     }

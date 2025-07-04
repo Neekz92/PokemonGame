@@ -4,9 +4,9 @@ import GameEngine.GameEngine;
 
 public class Charmander extends Pokemon {
 
-    public Charmander(GameEngine gameEngine, int level) {
+    public Charmander(GameEngine gameEngine, int xp) {
 
-        super(gameEngine, level);
+        super(gameEngine, xp);
 
         species = "CHARMANDER";
         setName(species);
@@ -19,7 +19,9 @@ public class Charmander extends Pokemon {
         setBaseSpdef(50);
         setBaseSpd(65);
 
+        updateLevel();
         setStats();
+        setNature();
         updateLearnSet();
         setupMoves();
     }

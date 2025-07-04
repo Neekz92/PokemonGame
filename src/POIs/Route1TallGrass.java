@@ -4,9 +4,9 @@ import GameEngine.Battle;
 import GameEngine.GameEngine;
 import Pokemon.*;
 
-public class TallGrass extends POI {
+public class Route1TallGrass extends POI {
 
-    public TallGrass(GameEngine gameEngine) {
+    public Route1TallGrass(GameEngine gameEngine) {
 
         super(gameEngine);
         setName("Tall Grass");
@@ -34,11 +34,20 @@ public class TallGrass extends POI {
 
     public void wildEncounterSetup() {
 
-        int rollLevel = random.nextInt(3, 5);
-        Pokemon pidgey = new Pidgey(gameEngine, rollLevel);
-        Pokemon rattata = new Rattata(gameEngine, rollLevel);
-        Pokemon oddish = new Oddish(gameEngine, rollLevel);
-        Pokemon bellsprout = new Bellsprout(gameEngine, rollLevel);
+        int rng1 = random.nextInt(1, 3);
+        int rng2;
+        switch (rng1) {
+            case 1: rng2 = 57; break;
+            case 2: rng2 = 97; break;
+            default: rng2 = 0;
+        }
+
+
+
+        Pokemon pidgey = new Pidgey(gameEngine, rng2);
+        Pokemon rattata = new Rattata(gameEngine, rng2);
+        Pokemon oddish = new Oddish(gameEngine, rng2);
+        Pokemon bellsprout = new Bellsprout(gameEngine, rng2);
 
         int rngEncounter = random.nextInt(1, 10);
         if (rngEncounter <= 3) {

@@ -4,9 +4,9 @@ import GameEngine.GameEngine;
 
 public class Bellsprout extends Pokemon {
 
-    public Bellsprout(GameEngine gameEngine, int level) {
+    public Bellsprout(GameEngine gameEngine, int xp) {
 
-        super(gameEngine, level);
+        super(gameEngine, xp);
 
         species = "BELLSPROUT";
         setName(species);
@@ -20,7 +20,9 @@ public class Bellsprout extends Pokemon {
         setBaseSpdef(30);
         setBaseSpd(40);
 
+        updateLevel();
         setStats();
+        setNature();
         updateLearnSet();
         setupMoves();
     }

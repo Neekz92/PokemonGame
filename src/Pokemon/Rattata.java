@@ -4,9 +4,9 @@ import GameEngine.GameEngine;
 
 public class Rattata extends Pokemon {
 
-    public Rattata(GameEngine gameEngine, int level) {
+    public Rattata(GameEngine gameEngine, int xp) {
 
-        super(gameEngine, level);
+        super(gameEngine, xp);
 
         species = "RATTATA";
         setName(species);
@@ -19,7 +19,9 @@ public class Rattata extends Pokemon {
         setBaseSpdef(35);
         setBaseSpd(72);
 
+        updateLevel();
         setStats();
+        setNature();
         updateLearnSet();
         setupMoves();
     }

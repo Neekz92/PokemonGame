@@ -225,7 +225,7 @@ public class Player {
 
     private void pokemonMenu() {
 
-        System.out.println("Selected POKeMON: " + selectedPokemon);
+        System.out.println("Selected POKeMON: " + selectedPokemon + " | Level: " + selectedPokemon.getLevel() + " | XP: " + selectedPokemon.getXp());
         System.out.println("");
         System.out.println("[ 1 ] STATS");
         System.out.println("[ 2 ] MOVES");
@@ -436,6 +436,7 @@ public class Player {
                     damagePart1 = 0;
                 }
 
+//                System.out.println("DEBUG Player.useMoves(): damage = " + damagePart1);
                 currentMon.getSelectedTarget().setCurrentHp(currentMon.getSelectedTarget().getCurrentHP() - damagePart1);
 
                 System.out.println("**************************************************");

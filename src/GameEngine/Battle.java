@@ -16,6 +16,8 @@ public class Battle {
 
     int highestSpeed;
 
+    private int xp;
+
     public Battle() {
 
         amountOfParticipants = 0;
@@ -158,6 +160,10 @@ public class Battle {
             for (int i = battleArray.length - 1; i >= 0 && i <= battleArray.length; i++) {
                 currentMon = battleArray[i];
                 System.out.println(currentMon.getName() + " gained 17 EXP. Points!");
+                currentMon.setXp(currentMon.getXp() + 17);
+                currentMon.updateLevel();
+                currentMon.setStats();
+
                 removeFromBattleArray(currentMon);
                 player.isInBattle = false;
                 player.selectedPOI.setHasOngoingBattle(false);

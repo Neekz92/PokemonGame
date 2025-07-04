@@ -4,9 +4,9 @@ import GameEngine.GameEngine;
 
 public class Oddish extends Pokemon {
 
-    public Oddish(GameEngine gameEngine, int level) {
+    public Oddish(GameEngine gameEngine, int xp) {
 
-        super(gameEngine, level);
+        super(gameEngine, xp);
 
         species = "ODDISH";
         setName(species);
@@ -20,7 +20,9 @@ public class Oddish extends Pokemon {
         setBaseSpdef(65);
         setBaseSpd(30);
 
+        updateLevel();
         setStats();
+        setNature();
         updateLearnSet();
         setupMoves();
     }

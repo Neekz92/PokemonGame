@@ -4,9 +4,9 @@ import GameEngine.GameEngine;
 
 public class Bulbasaur extends Pokemon {
 
-    public Bulbasaur(GameEngine gameEngine, int level) {
+    public Bulbasaur(GameEngine gameEngine, int xp) {
 
-        super(gameEngine, level);
+        super(gameEngine, xp);
 
         species = "BULBASAUR";
         setName(species);
@@ -20,7 +20,9 @@ public class Bulbasaur extends Pokemon {
         setBaseSpdef(65);
         setBaseSpd(45);
 
+        updateLevel();
         setStats();
+        setNature();
         updateLearnSet();
         setupMoves();
     }

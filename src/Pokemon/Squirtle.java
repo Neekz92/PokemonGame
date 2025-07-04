@@ -4,9 +4,9 @@ import GameEngine.GameEngine;
 
 public class Squirtle extends Pokemon {
 
-    public Squirtle(GameEngine gameEngine, int level) {
+    public Squirtle(GameEngine gameEngine, int xp) {
 
-        super(gameEngine, level);
+        super(gameEngine, xp);
 
         species = "SQUIRTLE";
         setName(species);
@@ -19,7 +19,9 @@ public class Squirtle extends Pokemon {
         setBaseSpdef(64);
         setBaseSpd(43);
 
+        updateLevel();
         setStats();
+        setNature();
         updateLearnSet();
         setupMoves();
     }
