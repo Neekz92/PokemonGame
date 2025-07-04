@@ -101,6 +101,8 @@ public class Pokemon extends Player {
 
     public static Move poisonSting = new PoisonSting();
 
+    public static Move stringShot = new StringShot();
+
     // the constructor lies below
     public Pokemon(GameEngine gameEngine, int xp) {
 

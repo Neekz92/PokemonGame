@@ -1,7 +1,6 @@
 package Locations;
 
 import GameEngine.GameEngine;
-import POIs.POI;
 import POIs.Route1TallGrass;
 
 public class Route1 extends Location {
@@ -10,8 +9,7 @@ public class Route1 extends Location {
 
         super(gameEngine);
         setName("Route 1");
-        POI route1TallGrass = new Route1TallGrass(gameEngine);
-        addPOI(route1TallGrass);
+        addPOI(new Route1TallGrass(gameEngine));
 
         x = 0;
         y = 1;
