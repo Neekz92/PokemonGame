@@ -42,6 +42,10 @@ public class POI {
 
     }
 
+    public void setHasOngoingBattle(boolean bool) {
+        hasOngoingBattle = bool;
+    }
+
     public Battle getBattle() {
         return battle;
     }

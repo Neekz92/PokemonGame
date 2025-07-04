@@ -106,6 +106,10 @@ public class Player {
         return selectedPOI;
     }
 
+    public void clearPOI() {
+        selectedPOI = null;
+    }
+
     public void addPokemon(Pokemon pokemon) {
 
         amountOfPokemon++;
@@ -284,7 +288,7 @@ public class Player {
 
         battle = location.poi.getBattle();
 
-        System.out.println(battle.rawPokemonArray[1] + " | Level: " + battle.rawPokemonArray[1].getLevel() + " | HP: " + battle.rawPokemonArray[1].getCurrentHP() + "/ " + battle.rawPokemonArray[0].getHp());
+        System.out.println(battle.rawPokemonArray[1] + " | Level: " + battle.rawPokemonArray[1].getLevel() + " | HP: " + battle.rawPokemonArray[1].getCurrentHP() + "/ " + battle.rawPokemonArray[1].getHp());
         System.out.println("===============================");
         System.out.println("");
         System.out.println("          " + battle.rawPokemonArray[0] + " | Level: " + battle.rawPokemonArray[0].getLevel() + " | HP: " + battle.rawPokemonArray[0].getCurrentHP() + "/ " + battle.rawPokemonArray[0].getHp());

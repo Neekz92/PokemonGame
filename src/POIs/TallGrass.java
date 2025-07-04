@@ -48,14 +48,14 @@ public class TallGrass extends POI {
             battle.incomingPokemon_wild = pidgey;
             pidgey.battle = battle;
 
-
             System.out.println("Go! " + player.getSelectedPokemon() + "!");
             System.out.println("");
             System.out.println("");
 
             gameEngine.turnOrder();
+        }
 
-        } else if (rngEncounter <= 6) {
+        else if (rngEncounter <= 6) {
             System.out.println("A wild " + rattata + " has appeared!");
             rattata.setLocation(player.getLocation());
             battle.addToRawPokemonArray(rattata);
@@ -67,9 +67,9 @@ public class TallGrass extends POI {
             System.out.println("");
 
             gameEngine.turnOrder();
+        }
 
-
-        } else if (rngEncounter <= 8) {
+        else if (rngEncounter <= 8) {
             System.out.println("A wild " + oddish + " has appeared!");
             oddish.setLocation(player.getLocation());
             battle.addToRawPokemonArray(oddish);
@@ -82,8 +82,9 @@ public class TallGrass extends POI {
 
             gameEngine.turnOrder();
 
+        }
 
-        } else {
+        else {
             System.out.println("A wild " + bellsprout + " has appeared!");
             bellsprout.setLocation(player.getLocation());
             battle.addToRawPokemonArray(bellsprout);
@@ -95,7 +96,6 @@ public class TallGrass extends POI {
             System.out.println("");
 
             gameEngine.turnOrder();
-
         }
     }
 }

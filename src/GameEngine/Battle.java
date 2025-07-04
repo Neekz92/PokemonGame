@@ -160,6 +160,7 @@ public class Battle {
                 System.out.println(currentMon.getName() + " gained 17 EXP. Points!");
                 removeFromBattleArray(currentMon);
                 player.isInBattle = false;
+                player.selectedPOI.setHasOngoingBattle(false);
 
                 if (battleArray.length == 0) {
                     for (int j = 0; j < rawPokemonArray.length; j++) {
