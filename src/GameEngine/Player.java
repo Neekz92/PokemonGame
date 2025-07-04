@@ -20,6 +20,9 @@ public class Player {
     POI selectedPOI;
     private Pokemon selectedPokemon;
 
+    private Pokemon currentMon;
+    private double rawDamage;
+
     private Pokemon activePokemon;
     private Move selectedMove;
     private Pokemon selectedTarget;
@@ -302,7 +305,7 @@ public class Player {
 
         boolean battleMenu = true;
         while (battleMenu) {
-//            try {
+            try {
                 int input = scanner.nextInt();
                 scanner.nextLine();
 
@@ -316,12 +319,11 @@ public class Player {
                     case 4:
                     default:
                 }
+            } catch (Exception e) {
+                System.out.println("Invalid: " + e + " Player.battle() | currentPlayer = " + name);
             }
-
-//            catch (Exception e) {
-//                System.out.println("Invalid: " + e + " Player.battle() | currentPlayer = " + name);
-//            }
         }
+    }
 
 
 
@@ -403,7 +405,7 @@ public class Player {
     private void useMoves() {  //  Damage formula lives here
 
         for (int i = 0; i < battle.battleArray.length; i++) {
-            Pokemon currentMon = battle.battleArray[i];
+            currentMon = battle.battleArray[i];
 //            System.out.println("DEBUG FROM Player.useMoves() = " + battle.battleArray[i].getName());
             if (currentMon.isNpc) {
                 npcSelectTarget();
@@ -413,13 +415,21 @@ public class Player {
             System.out.println("**************************************************");
             System.out.println(currentMon + " used " + currentMon.getSelectedMove().getName() + "!");
 
-            double rawDamage;
             double randomFactor = 0.85 + (Math.random() * 0.15);
             int damagePart1;
 
             if (currentMon.getCurrentHP() > 0) {
                 if (currentMon.getSelectedMove().getPower() > 0) {
                     rawDamage = ((((2.0 * currentMon.getLevel()) / 5) + 2) * currentMon.getSelectedMove().getPower() * ((double) currentMon.getAtk() / currentMon.getSelectedTarget().getDef()) / 50) + 2;
+
+                    if (currentMon.getType().equals(currentMon.getSelectedMove().getType()) ||
+                       (currentMon.getType2() != null && currentMon.getType2().equals(currentMon.getSelectedMove().getType()))) {
+
+                        rawDamage *= 1.5;
+                    }
+
+                    superEffective();
+                    notVeryEffective();
                     rawDamage *= randomFactor;
                     damagePart1 = (int) Math.round(rawDamage);
                 } else {
@@ -435,6 +445,182 @@ public class Player {
 
                 faint(currentMon.getSelectedTarget());
             }
+        }
+    }
+
+    private void superEffective() {
+
+        if (currentMon.getSelectedMove().getType().equals("Fire") &&  // Fire
+
+                (currentMon.getSelectedTarget().getType().equals("Grass") ||
+                 currentMon.getSelectedTarget().getType().equals("Bug") ||
+                 currentMon.getSelectedTarget().getType().equals("Steel") ||
+                 currentMon.getSelectedTarget().getType().equals("Ice") ||
+
+                (currentMon.getSelectedTarget().getType2() != null &&
+                        (currentMon.getSelectedTarget().getType2().equals("Grass") ||
+                 currentMon.getSelectedTarget().getType2().equals("Bug") ||
+                 currentMon.getSelectedTarget().getType2().equals("Steel") ||
+                 currentMon.getSelectedTarget().getType2().equals("Ice")))) &&
+
+                (!currentMon.getSelectedTarget().getType().equals("Fire") ||
+                 !currentMon.getSelectedTarget().getType().equals("Water") ||
+                 !currentMon.getSelectedTarget().getType().equals("Dragon") ||
+
+                 (currentMon.getSelectedTarget().getType2() != null &&
+                         (!currentMon.getSelectedTarget().getType2().equals("Fire") ||
+                 !currentMon.getSelectedTarget().getType2().equals("Water") ||
+                 !currentMon.getSelectedTarget().getType2().equals("Dragon"))))) {
+
+            System.out.println("It's super effective!");
+            rawDamage *= 2;
+        }
+
+        if (currentMon.getSelectedMove().getType().equals("Grass") &&  // Grass
+
+                (currentMon.getSelectedTarget().getType().equals("Water") ||
+                        currentMon.getSelectedTarget().getType().equals("Ground") ||
+                        currentMon.getSelectedTarget().getType().equals("Rock") ||
+
+                        (currentMon.getSelectedTarget().getType2() != null &&
+                                (currentMon.getSelectedTarget().getType2().equals("Water") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Ground") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Rock")))) &&
+
+                (!currentMon.getSelectedTarget().getType().equals("Fire") ||
+                        !currentMon.getSelectedTarget().getType().equals("Grass") ||
+                        !currentMon.getSelectedTarget().getType().equals("Poison") ||
+                        !currentMon.getSelectedTarget().getType().equals("Flying") ||
+                        !currentMon.getSelectedTarget().getType().equals("Bug") ||
+                        !currentMon.getSelectedTarget().getType().equals("Dragon") ||
+                        !currentMon.getSelectedTarget().getType().equals("Steel") ||
+
+                        (currentMon.getSelectedTarget().getType2() != null &&
+                                (!currentMon.getSelectedTarget().getType2().equals("Fire") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Grass") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Poison") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Flying") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Bug") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Dragon") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Steel"))))) {
+
+            System.out.println("It's super effective!");
+            rawDamage *= 2;
+        }
+
+        if (currentMon.getSelectedMove().getType().equals("Water") &&  // Water
+
+                (currentMon.getSelectedTarget().getType().equals("Fire") ||
+                        currentMon.getSelectedTarget().getType().equals("Ground") ||
+                        currentMon.getSelectedTarget().getType().equals("Rock") ||
+
+                        (currentMon.getSelectedTarget().getType2() != null &&
+                                (currentMon.getSelectedTarget().getType2().equals("Fire") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Ground") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Rock")))) &&
+
+                (!currentMon.getSelectedTarget().getType().equals("Water") ||
+                        !currentMon.getSelectedTarget().getType().equals("Grass") ||
+                        !currentMon.getSelectedTarget().getType().equals("Dragon") ||
+
+                        (currentMon.getSelectedTarget().getType2() != null &&
+                                (!currentMon.getSelectedTarget().getType2().equals("Water") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Grass") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Dragon"))))) {
+
+            System.out.println("It's super effective!");
+            rawDamage *= 2;
+        }
+    }
+
+    private void notVeryEffective() {
+
+        if (currentMon.getSelectedMove().getType().equals("Fire") &&  // Fire
+
+                (currentMon.getSelectedTarget().getType().equals("Fire") ||
+                        currentMon.getSelectedTarget().getType().equals("Water") ||
+                        currentMon.getSelectedTarget().getType().equals("Rock") ||
+                        currentMon.getSelectedTarget().getType().equals("Dragon") ||
+
+                        (currentMon.getSelectedTarget().getType2() != null &&
+                                (currentMon.getSelectedTarget().getType2().equals("Fire") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Water") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Rock") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Dragon")))) &&
+
+                (!currentMon.getSelectedTarget().getType().equals("Grass") ||
+                        !currentMon.getSelectedTarget().getType().equals("Bug") ||
+                        !currentMon.getSelectedTarget().getType().equals("Ice") ||
+                        !currentMon.getSelectedTarget().getType().equals("Steel") ||
+
+                        (currentMon.getSelectedTarget().getType2() != null &&
+                                (!currentMon.getSelectedTarget().getType2().equals("Grass") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Bug") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Ice") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Steel"))))) {
+
+            System.out.println("It's not very effective...");
+            rawDamage *= .5;
+        }
+
+
+
+        if (currentMon.getSelectedMove().getType().equals("Grass") &&  // Grass
+
+                (currentMon.getSelectedTarget().getType().equals("Fire") ||
+                        currentMon.getSelectedTarget().getType().equals("Grass") ||
+                        currentMon.getSelectedTarget().getType().equals("Bug") ||
+                        currentMon.getSelectedTarget().getType().equals("Poison") ||
+                        currentMon.getSelectedTarget().getType().equals("Flying") ||
+                        currentMon.getSelectedTarget().getType().equals("Steel") ||
+                        currentMon.getSelectedTarget().getType().equals("Dragon") ||
+
+                        (currentMon.getSelectedTarget().getType2() != null &&
+                                (currentMon.getSelectedTarget().getType2().equals("Fire") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Grass") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Bug") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Poison") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Flying") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Steel") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Dragon")))) &&
+
+                (!currentMon.getSelectedTarget().getType().equals("Water") ||
+                        !currentMon.getSelectedTarget().getType().equals("Rock") ||
+                        !currentMon.getSelectedTarget().getType().equals("Ground") ||
+
+                        (currentMon.getSelectedTarget().getType2() != null &&
+                                (!currentMon.getSelectedTarget().getType2().equals("Water") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Rock") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Ground"))))) {
+
+            System.out.println("It's not very effective...");
+            rawDamage *= .5;
+        }
+
+
+
+        if (currentMon.getSelectedMove().getType().equals("Water") &&  // water
+
+                (currentMon.getSelectedTarget().getType().equals("Water") ||
+                        currentMon.getSelectedTarget().getType().equals("Grass") ||
+                        currentMon.getSelectedTarget().getType().equals("Dragon") ||
+
+                        (currentMon.getSelectedTarget().getType2() != null &&
+                                (currentMon.getSelectedTarget().getType2().equals("Water") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Grass") ||
+                                        currentMon.getSelectedTarget().getType2().equals("Dragon")))) &&
+
+                (!currentMon.getSelectedTarget().getType().equals("Fire") ||
+                        !currentMon.getSelectedTarget().getType().equals("Rock") ||
+                        !currentMon.getSelectedTarget().getType().equals("Ground") ||
+
+                        (currentMon.getSelectedTarget().getType2() != null &&
+                                (!currentMon.getSelectedTarget().getType2().equals("Fire") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Rock") ||
+                                        !currentMon.getSelectedTarget().getType2().equals("Ground"))))) {
+
+            System.out.println("It's not very effective...");
+            rawDamage *= .5;
         }
     }
 
