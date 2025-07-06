@@ -102,6 +102,7 @@ public class Pokemon extends Player {
     public static Move poisonSting = new PoisonSting();
 
     public static Move stringShot = new StringShot();
+    public static Move harden = new Harden();
 
     public static Move charm = new Charm();
     public static Move nastyPlot = new NastyPlot();
@@ -110,6 +111,12 @@ public class Pokemon extends Player {
     public static Move sweetKiss = new SweetKiss();
     public static Move thunderShock = new ThunderShock();
     public static Move thunderWave = new ThunderWave();
+
+    public static Move bugBite = new BugBite();
+    public static Move gust = new Gust();
+    public static Move supersonic = new Supersonic();
+
+    public static Move furyAttack = new FuryAttack();
 
     // the constructor lies below
     public Pokemon(GameEngine gameEngine, int xp) {
@@ -729,9 +736,6 @@ public class Pokemon extends Player {
     }
 
     public void showMoveSet() {
-
-        System.out.println("DEBUG Pokemon.showMoveSet(): OT = " + ot);
-        System.out.println("Learnset.length = " + learnSet.length);
 
         for (int i = 0; i < moveSet.length; i++) {
             System.out.println(moveSet[i].getName() + " | Type: " + moveSet[i].getType() + " | Power: " + moveSet[i].getPower() + " | PP: " + moveSet[i].getPp());

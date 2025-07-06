@@ -50,7 +50,7 @@ public class Route2TallGrass extends POI {
         Pokemon caterpie = new Caterpie(gameEngine, rng2);
         Pokemon weedle = new Weedle(gameEngine, rng2);
 
-        int rngEncounter = random.nextInt(1, 100);
+        int rngEncounter = random.nextInt(1, 101);
         if (rngEncounter <= 30) {
             System.out.println("A wild " + pidgey + " has appeared!");
             pidgey.setLocation(player.getLocation());

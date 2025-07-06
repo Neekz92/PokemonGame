@@ -1,5 +1,6 @@
 package GameEngine;
 
+import Item.Item;
 import Locations.Location;
 import Moves.Move;
 import POIs.POI;
@@ -41,6 +42,11 @@ public class Player {
 
     protected boolean isNpc;
 
+    protected Item selectedItem;
+    protected Inventory inventory;
+
+    private int money;
+
     // The constructor lies below
     public Player(GameEngine gameEngine) {
 
@@ -53,6 +59,15 @@ public class Player {
 
         amountOfPokemon = 0;
         team = new Pokemon[amountOfPokemon];
+
+        inventory = new Inventory();
+        inventory.player = this;
+
+        money = 3000;
+    }
+
+    public void addItem (Item item) {
+
     }
 
     public String getName() {
@@ -186,6 +201,12 @@ public class Player {
                         showTeam();
                         startMenu = false;
                         break;
+                    case 3:
+                        System.out.println("");
+                        inventory.openInventory();
+                        startMenu = false;
+                        gameEngine.standardTurn();
+                        break;
 
                 }
             } catch (Exception e) {
@@ -288,8 +309,6 @@ public class Player {
 
     protected void battle() {
 
-        System.out.println("");
-
         battle = location.poi.getBattle();
 
         System.out.println(battle.rawPokemonArray[1] + " | Level: " + battle.rawPokemonArray[1].getLevel() + " | HP: " + battle.rawPokemonArray[1].getCurrentHP() + "/ " + battle.rawPokemonArray[1].getHp());
@@ -316,6 +335,10 @@ public class Player {
                         break;
                     case 2:
                     case 3:
+                        inventory.openInventory();
+                        useItemInBattle();
+                        battleMenu = false;
+                        break;
                     case 4:
                     default:
                 }
@@ -351,6 +374,27 @@ public class Player {
         npcSelectMove();
         resolveTurn();
         gameEngine.turnOrder();
+    }
+
+    private void useItemInBattle() {
+
+        boolean useItemInBattle = true;
+        while(useItemInBattle) {
+            int input = scanner.nextInt();
+            scanner.nextLine();
+
+            if (input == 0) {
+                useItemInBattle = false;
+                return;
+            }
+
+            setSelectedItem(inventory.getItemArray()[input - 1]);
+            selectedItem.use();
+            npcSelectMove();
+            npcSelectTarget();
+            resolveTurn();
+            useItemInBattle = false;
+        }
     }
 
     private Move selectMove() {
@@ -402,6 +446,11 @@ public class Player {
         }
     }
 
+    private void usePokeBall() {
+
+
+    }
+
     private void useMoves() {  //  Damage formula lives here
 
         for (int i = 0; i < battle.battleArray.length; i++) {
@@ -410,6 +459,12 @@ public class Player {
             if (currentMon.isNpc) {
                 npcSelectTarget();
             }
+
+            if (currentMon.getSelectedMove().getName().equals("Pokeball")) {
+                System.out.println(currentMon.ot + " throws POKeBALL, but that MF broke free :(");
+                continue;
+            }
+
 
             System.out.println("");
             System.out.println("**************************************************");
@@ -559,5 +614,26 @@ public class Player {
 
     public void setActivePokemon(Pokemon pokemon) {
         activePokemon = pokemon;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+
+        this.money = money;
+    }
+
+    public Item getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(Item item) {
+        this.selectedItem = item;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 }

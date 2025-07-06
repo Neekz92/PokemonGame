@@ -160,6 +160,7 @@ public class GameEngine {
             System.out.println("****************************************************************");
             System.out.println(currentPlayer.getName() + " moved north to " + currentPlayer.getLocation().getName());
             System.out.println("****************************************************************");
+            System.out.println("");
         }
     }
 
