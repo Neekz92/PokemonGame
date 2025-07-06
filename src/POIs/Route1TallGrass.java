@@ -1,7 +1,6 @@
 package POIs;
 
-import GameEngine.Battle;
-import GameEngine.GameEngine;
+import GameEngine.*;
 import Pokemon.*;
 
 public class Route1TallGrass extends POI {
@@ -22,14 +21,17 @@ public class Route1TallGrass extends POI {
             player.battle = battle;
             player.getLocation().poi = this;
             battle.setPlayer(player);
+            battle.playerArray.add(player);
 
             player.setSelectedPokemon(player.team[0]);
             battle.addToRawPokemonArray(player.getSelectedPokemon());
             battle.incomingPokemon_fromTrainer1 = player.getSelectedPokemon();
             player.setActivePokemon(player.getSelectedPokemon());
             player.getActivePokemon().battle = battle;
+            player.getActivePokemon().isInBattle = true;
 
             wildEncounterSetup();
+            player.battle();
         }
 
         else if (!battle.contains(gameEngine.getPlayer())) {
@@ -38,12 +40,15 @@ public class Route1TallGrass extends POI {
             player.battle = battle;
             player.getLocation().poi = this;
             battle.setPlayer(player);
+            battle.playerArray.add(player);
 
             player.setSelectedPokemon(player.team[0]);
             battle.addToRawPokemonArray(player.getSelectedPokemon());
             battle.getIncomingPokemon_fromTrainer2 = player.getSelectedPokemon();
             player.setActivePokemon(player.getSelectedPokemon());
             player.getActivePokemon().battle = battle;
+            player.getActivePokemon().isInBattle = true;
+            player.battle();
 
             System.out.println(player.team[0].getName() + " has joined the battle!");
         }
@@ -73,6 +78,7 @@ public class Route1TallGrass extends POI {
             battle.addToRawPokemonArray(pidgey);
             battle.incomingPokemon_wild = pidgey;
             pidgey.battle = battle;
+            pidgey.isInBattle = true;
 
             System.out.println("Go! " + player.getSelectedPokemon() + "!");
             System.out.println("");
@@ -87,6 +93,7 @@ public class Route1TallGrass extends POI {
             battle.addToRawPokemonArray(rattata);
             battle.incomingPokemon_wild = rattata;
             rattata.battle = battle;
+            rattata.isInBattle = true;
 
             System.out.println("Go! " + player.getSelectedPokemon() + "!");
             System.out.println("");
@@ -101,6 +108,7 @@ public class Route1TallGrass extends POI {
             battle.addToRawPokemonArray(oddish);
             battle.incomingPokemon_wild = oddish;
             oddish.battle = battle;
+            oddish.isInBattle = true;
 
             System.out.println("Go! " + player.getSelectedPokemon() + "!");
             System.out.println("");
@@ -116,6 +124,7 @@ public class Route1TallGrass extends POI {
             battle.addToRawPokemonArray(bellsprout);
             battle.incomingPokemon_wild = bellsprout;
             bellsprout.battle = battle;
+            bellsprout.isInBattle = true;
 
             System.out.println("Go! " + player.getSelectedPokemon() + "!");
             System.out.println("");

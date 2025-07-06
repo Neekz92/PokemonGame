@@ -306,7 +306,7 @@ public class Player {
         }
     }
 
-    protected void battle() {
+    public void battle() {
 
         battle = location.poi.getBattle();
         System.out.println("");
@@ -357,7 +357,9 @@ public class Player {
                     case 4:
                     default:
                 }
-            } catch (Exception e) {
+            }
+
+            catch (Exception e) {
                 System.out.println("Invalid: " + e + " Player.battle() | currentPlayer = " + name);
             }
         }
@@ -372,8 +374,8 @@ public class Player {
         System.out.println("");
         System.out.println("");
         System.out.println("**************************************************");
-        for (int i = 0; i < battle.battleArray.length; i++) {
-            if (battle.battleArray[i].ot == null) {
+        for (int i = 0; i < battle.rawPokemonArray.length; i++) {
+            if (battle.rawPokemonArray[i].ot == null) {
                 continue;
             }
         }
@@ -421,7 +423,6 @@ public class Player {
                 scanner.nextLine();
 
                 selectedMove = selectedPokemon.getMoveSet()[input - 1];
-//                System.out.println("DEBUG: Selected move: " + selectedMove);
                 selectMove = false;
                 break;
             } catch (Exception e) {
@@ -429,6 +430,7 @@ public class Player {
             }
         }
         activePokemon.setSelectedMove(selectedMove);
+        System.out.println(activePokemon.getName() + " | " + activePokemon.getSelectedMove());
         return selectedMove;
     }
 
@@ -439,8 +441,9 @@ public class Player {
 
     private Pokemon selectTarget() {
 
-        for (int i = 0; i < battle.battleArray.length; i++) {
-            System.out.println("[ " + (i + 1) + " ] " + battle.battleArray[i]);
+
+        for (int i = 0; i < battle.rawPokemonArray.length; i++) {
+            System.out.println("[ " + (i + 1) + " ] " + battle.rawPokemonArray[i]);
         }
 
         boolean selectTarget = true;
@@ -449,14 +452,13 @@ public class Player {
                 int input = scanner.nextInt();
                 scanner.nextLine();
 
-                selectedTarget = battle.battleArray[input - 1];
+                selectedTarget = battle.rawPokemonArray[input - 1];
                 activePokemon.setSelectedTarget(selectedTarget);
                 selectTarget = false;
             } catch (Exception e) {
                 System.out.println("while loop inside Player.selectTarget()");
             }
         }
-    //        System.out.println("Selected target: " + selectedTarget);
         return selectedTarget;
     }
 

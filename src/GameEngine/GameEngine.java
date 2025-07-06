@@ -43,7 +43,6 @@ public class GameEngine {
         Player newPlayer = new Player(this);
         currentPlayer = newPlayer;
         currentPlayer.setIsNpc(false);
-        System.out.println("DEBUG from GameEngine.startGame() " + currentPlayer.getName() + " hash: " + currentPlayer.hashCode() + " set NPC flag to FALSE");
 
         System.out.println("Professor Oak: \"Hello there! Welcome to the world of POKeMON!\"");
         GameEngine.delay(500);
@@ -88,6 +87,10 @@ public class GameEngine {
                 }
 
                 else {
+                    if (!currentPlayer.selectedPOI.getHighOngoingBattle()) {
+                        continue; // Skip .battle() if the encounter is over
+                    }
+
                     currentPlayer.battle();
                 }
             }
