@@ -25,10 +25,27 @@ public class Route1TallGrass extends POI {
 
             player.setSelectedPokemon(player.team[0]);
             battle.addToRawPokemonArray(player.getSelectedPokemon());
-            battle.incomingPokemon_fromTrainer = player.getSelectedPokemon();
+            battle.incomingPokemon_fromTrainer1 = player.getSelectedPokemon();
             player.setActivePokemon(player.getSelectedPokemon());
+            player.getActivePokemon().battle = battle;
 
             wildEncounterSetup();
+        }
+
+        else if (!battle.contains(gameEngine.getPlayer())) {
+            player = gameEngine.getPlayer();
+            player.isInBattle = true;
+            player.battle = battle;
+            player.getLocation().poi = this;
+            battle.setPlayer(player);
+
+            player.setSelectedPokemon(player.team[0]);
+            battle.addToRawPokemonArray(player.getSelectedPokemon());
+            battle.getIncomingPokemon_fromTrainer2 = player.getSelectedPokemon();
+            player.setActivePokemon(player.getSelectedPokemon());
+            player.getActivePokemon().battle = battle;
+
+            System.out.println(player.team[0].getName() + " has joined the battle!");
         }
     }
 
@@ -61,7 +78,7 @@ public class Route1TallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else if (rngEncounter <= 60) {
@@ -75,7 +92,7 @@ public class Route1TallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else if (rngEncounter <= 80) {
@@ -89,7 +106,7 @@ public class Route1TallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
 
         }
 
@@ -104,7 +121,7 @@ public class Route1TallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
     }
 }

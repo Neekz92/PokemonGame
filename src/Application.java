@@ -6,5 +6,6 @@ public class Application {
 
         GameEngine gameEngine = new GameEngine();
         gameEngine.startGame();
+        gameEngine.turnOrder();
     }
 }

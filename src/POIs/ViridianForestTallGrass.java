@@ -25,7 +25,7 @@ public class ViridianForestTallGrass extends POI {
 
             player.setSelectedPokemon(player.team[0]);
             battle.addToRawPokemonArray(player.getSelectedPokemon());
-            battle.incomingPokemon_fromTrainer = player.getSelectedPokemon();
+            battle.incomingPokemon_fromTrainer1 = player.getSelectedPokemon();
             player.setActivePokemon(player.getSelectedPokemon());
 
             wildEncounterSetup();
@@ -73,7 +73,7 @@ public class ViridianForestTallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else if (rngEncounter <= 47) {
@@ -87,7 +87,7 @@ public class ViridianForestTallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
 
@@ -102,7 +102,7 @@ public class ViridianForestTallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else if (rngEncounter <= 72) {
@@ -116,7 +116,7 @@ public class ViridianForestTallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else if (rngEncounter <= 82) {
@@ -130,7 +130,7 @@ public class ViridianForestTallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else if (rngEncounter <= 87) {
@@ -144,7 +144,7 @@ public class ViridianForestTallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else if (rngEncounter <= 92) {
@@ -158,7 +158,7 @@ public class ViridianForestTallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else if (rngEncounter <= 97) {
@@ -172,7 +172,7 @@ public class ViridianForestTallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else if (rngEncounter <= 98) {
@@ -186,7 +186,7 @@ public class ViridianForestTallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else if (rngEncounter <= 99) {
@@ -200,7 +200,7 @@ public class ViridianForestTallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else {
@@ -214,7 +214,7 @@ public class ViridianForestTallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
     }
 }

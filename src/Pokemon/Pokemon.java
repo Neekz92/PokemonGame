@@ -14,6 +14,7 @@ public class Pokemon extends Player {
     Random random;
 
     public String ot;
+    public boolean isNpc;
 
     private String name;
     protected String species;
@@ -173,7 +174,7 @@ public class Pokemon extends Player {
         moveSetSize = 0;
         moveSet = new Move[moveSetSize];
 
-        int shinyRoll = random.nextInt(1,20);
+        int shinyRoll = random.nextInt(1,101);
         if (shinyRoll == 1) {
             isShiny = true;
         }

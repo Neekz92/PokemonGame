@@ -61,4 +61,16 @@ public class Map {
         }
         return null;
     }
+
+    public void battle() {
+
+        for (int i = 0; i < locationArray.length; i++) {
+
+            if (locationArray[i].poi != null && locationArray[i].poi.getHighOngoingBattle()) {
+
+                locationArray[i].poi.getBattle().useMoves();
+
+            }
+        }
+    }
 }

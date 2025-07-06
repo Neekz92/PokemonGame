@@ -42,7 +42,8 @@ public class GameEngine {
 
         Player newPlayer = new Player(this);
         currentPlayer = newPlayer;
-        currentPlayer.isNpc = false;
+        currentPlayer.setIsNpc(false);
+        System.out.println("DEBUG from GameEngine.startGame() " + currentPlayer.getName() + " hash: " + currentPlayer.hashCode() + " set NPC flag to FALSE");
 
         System.out.println("Professor Oak: \"Hello there! Welcome to the world of POKeMON!\"");
         GameEngine.delay(500);
@@ -73,7 +74,6 @@ public class GameEngine {
         System.out.println("Professor Oak: \"Let's go!\"");
         System.out.println("");
 
-        turnOrder();
     }
 
     public void turnOrder() {
@@ -81,15 +81,17 @@ public class GameEngine {
         boolean gameOn = true;
         while (gameOn) {
             for (int i = 0; i < amountOfPlayers; i++) {
-                if (!playerArray[i].isInBattle) {
-                    playerArray[i].gameEngine.standardTurn();
+                currentPlayer = playerArray[i];
+                if (!currentPlayer.isInBattle) {
 
-                    playerArray[i].gameEngine.activateLocation();
+                    currentPlayer.gameEngine.standardTurn();
                 }
+
                 else {
-                    playerArray[i].battle();
+                    currentPlayer.battle();
                 }
             }
+            map.battle();
         }
     }
 
@@ -104,6 +106,7 @@ public class GameEngine {
         System.out.println("[ 4 ] Travel West");
         System.out.println("[ 5 ] Stay Here");
         System.out.println("[ 6 ] Start Menu");
+        System.out.println("[ 7 ] NEW PLAYER");
     }
 
     protected void standardTurn() {
@@ -134,8 +137,9 @@ public class GameEngine {
                         moveWest();
                         standardTurn = false;
                         break;
-                    case 5: standardTurn = false; break;
+                    case 5: stayHere(); standardTurn = false; break;
                     case 6: currentPlayer.startMenu(); standardTurn = false; break;
+                    case 7: startGame(); standardTurn = false; break;
                     default: System.out.println("Was that a typo?"); break;
                 }
             }
@@ -161,6 +165,7 @@ public class GameEngine {
             System.out.println(currentPlayer.getName() + " moved north to " + currentPlayer.getLocation().getName());
             System.out.println("****************************************************************");
             System.out.println("");
+            activateLocation();
         }
     }
 
@@ -178,6 +183,7 @@ public class GameEngine {
             System.out.println("****************************************************************");
             System.out.println(currentPlayer.getName() + " moved north to " + currentPlayer.getLocation().getName());
             System.out.println("****************************************************************");
+            activateLocation();
         }
     }
 
@@ -195,6 +201,7 @@ public class GameEngine {
             System.out.println("****************************************************************");
             System.out.println(currentPlayer.getName() + " moved south to " + currentPlayer.getLocation().getName());
             System.out.println("****************************************************************");
+            activateLocation();
         }
     }
 
@@ -212,14 +219,15 @@ public class GameEngine {
             System.out.println("****************************************************************");
             System.out.println(currentPlayer.getName() + " moved north to " + currentPlayer.getLocation().getName());
             System.out.println("****************************************************************");
+            activateLocation();
         }
     }
 
-
+    private void stayHere() {
+        activateLocation();
+    }
 
     private void activateLocation() {
-
-        for (int i = 0; i < amountOfPlayers; i++) {
 
             System.out.println("These are the points of interest: ");
             currentPlayer.getLocation().showPOI();
@@ -227,7 +235,7 @@ public class GameEngine {
             if (currentPlayer.selectedPOI != null) {
                 currentPlayer.selectedPOI.execute();
             }
-        }
+
     }
 
     public static void delay(int delay) {

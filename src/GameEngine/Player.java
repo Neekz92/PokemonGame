@@ -38,9 +38,8 @@ public class Player {
 
     public boolean receivedStarter;
     public boolean isInBattle;
-    public boolean addedToBattleArray;
 
-    protected boolean isNpc;
+    private boolean isNpc;
 
     protected Item selectedItem;
     protected Inventory inventory;
@@ -66,7 +65,7 @@ public class Player {
         money = 3000;
     }
 
-    public void addItem (Item item) {
+    public void addItem(Item item) {
 
     }
 
@@ -310,16 +309,32 @@ public class Player {
     protected void battle() {
 
         battle = location.poi.getBattle();
-
-        System.out.println(battle.rawPokemonArray[1] + " | Level: " + battle.rawPokemonArray[1].getLevel() + " | HP: " + battle.rawPokemonArray[1].getCurrentHP() + "/ " + battle.rawPokemonArray[1].getHp());
-        System.out.println("===============================");
         System.out.println("");
-        System.out.println("          " + battle.rawPokemonArray[0] + " | Level: " + battle.rawPokemonArray[0].getLevel() + " | HP: " + battle.rawPokemonArray[0].getCurrentHP() + "/ " + battle.rawPokemonArray[0].getHp());
-        System.out.println("=========================================");
+
+        if (battle.getAmountOfNPC() == 1) {
+            System.out.println(battle.incomingPokemon_wild + " | Level: " + battle.incomingPokemon_wild.getLevel() + " | HP: " + battle.incomingPokemon_wild.getCurrentHP() + "/ " + battle.incomingPokemon_wild.getHp());
+            System.out.println("===============================");
+        }
+
+
+        System.out.println("");
+
+
+        if (battle.getAmountOfPlayers() == 1) {
+            System.out.println("          " + battle.incomingPokemon_fromTrainer1 + " | Level: " + battle.incomingPokemon_fromTrainer1.getLevel() + " | HP: " + battle.incomingPokemon_fromTrainer1.getCurrentHP() + "/ " + battle.incomingPokemon_fromTrainer1.getHp());
+            System.out.println("=========================================");
+        }
+
+        if (battle.getAmountOfPlayers() == 2) {
+            //System.out.println(battle.rawPokemonArray[0] + " | Level: " + battle.rawPokemonArray[0].getLevel() + " | HP: " + battle.rawPokemonArray[0].getCurrentHP() + "/ " + battle.rawPokemonArray[0].getHp() + "     " + battle.rawPokemonArray[2] + " | Level: " + battle.rawPokemonArray[2].getLevel() + " | HP: " + battle.rawPokemonArray[2].getCurrentHP() + "/ " + battle.rawPokemonArray[2].getHp());
+            System.out.println(battle.incomingPokemon_fromTrainer1.getName() + "                       " + battle.getIncomingPokemon_fromTrainer2.getName());
+            System.out.println("Level: " + battle.incomingPokemon_fromTrainer1.getLevel() + " | HP: " + battle.incomingPokemon_fromTrainer1.getCurrentHP() + "/ " + battle.incomingPokemon_fromTrainer1.getHp() + "          " + "Level: " + battle.getIncomingPokemon_fromTrainer2.getLevel() + " | HP: " + battle.getIncomingPokemon_fromTrainer2.getCurrentHP() + "/ " + battle.getIncomingPokemon_fromTrainer2.getHp());
+            System.out.println("====================================================");
+        }
+
         System.out.println("");
         System.out.println("          " + "[ 1 ] FIGHT  [ 2 ] PkMn");
         System.out.println("          " + "[ 3 ] ITEM   [ 4 ] RUN");
-
         battle.sortBySpeed();
 
         boolean battleMenu = true;
@@ -349,7 +364,6 @@ public class Player {
     }
 
 
-
     private void fight() {
 
         System.out.println("");
@@ -361,25 +375,26 @@ public class Player {
         for (int i = 0; i < battle.battleArray.length; i++) {
             if (battle.battleArray[i].ot == null) {
                 continue;
-            } else if (battle.battleArray[i].ot.equals(name)) {
-                for (int j = 0; j < battle.battleArray[i].getMoveSet().length; j++) {
-                    System.out.println("[ " + (j + 1) + " ] " + battle.battleArray[i].getMoveSet()[j]);
-                }
             }
         }
+
+        for (int i = 0; i < activePokemon.getMoveSet().length; i++) {
+            System.out.println("[ " + (i + 1) + " ] " + activePokemon.getMoveSet()[i]);
+        }
+
+
         System.out.println("**************************************************");
         System.out.println("");
         selectMove();
         selectTarget();
-        npcSelectMove();
-        resolveTurn();
-        gameEngine.turnOrder();
+//        npcSelectMove();
+//        resolveTurn();
     }
 
     private void useItemInBattle() {
 
         boolean useItemInBattle = true;
-        while(useItemInBattle) {
+        while (useItemInBattle) {
             int input = scanner.nextInt();
             scanner.nextLine();
 
@@ -388,11 +403,11 @@ public class Player {
                 return;
             }
 
-            setSelectedItem(inventory.getItemArray()[input - 1]);
+            //setSelectedItem(inventory.getItemArray()[input - 1]);
             selectedItem.use();
-            npcSelectMove();
-            npcSelectTarget();
-            resolveTurn();
+            battle.npcSelectMove();
+            //npcSelectTarget();
+//            resolveTurn();
             useItemInBattle = false;
         }
     }
@@ -409,9 +424,7 @@ public class Player {
 //                System.out.println("DEBUG: Selected move: " + selectedMove);
                 selectMove = false;
                 break;
-            }
-
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println("Invalid, from Player.fight(), selectMove loop");
             }
         }
@@ -419,109 +432,15 @@ public class Player {
         return selectedMove;
     }
 
-    private Move npcSelectMove() {
-
-        Pokemon npc = null;
-
-        for (int i = 0; i < battle.battleArray.length; i++) {
-            if (battle.battleArray[i].isNpc && battle.battleArray[i].getCurrentHP() > 0) {
-                if (battle.battleArray[i].hashCode() != selectedPokemon.hashCode()) {
-                    npc = battle.battleArray[i];
-                    int rng = random.nextInt(0, battle.battleArray[i].getMoveSet().length);
-
-                    battle.battleArray[i].setSelectedMove(battle.battleArray[i].getMoveSet()[rng]);
-                }
-            }
-        }
-        return npc.getSelectedMove();
-    }
-
-    private void faint(Pokemon pokemon) {
-
-        if (pokemon.getCurrentHP() == 0) {
-            System.out.println(pokemon.getName() + " fainted!");
-            pokemon.battle.removeFromBattleArray(pokemon);
-            pokemon.battle.removeFromRawPokemonArray(pokemon);
-            battle.distributeReward();
-        }
-    }
-
     private void usePokeBall() {
 
-
     }
 
-    private void useMoves() {  //  Damage formula lives here
-
-        for (int i = 0; i < battle.battleArray.length; i++) {
-            currentMon = battle.battleArray[i];
-//            System.out.println("DEBUG FROM Player.useMoves() = " + battle.battleArray[i].getName());
-            if (currentMon.isNpc) {
-                npcSelectTarget();
-            }
-
-            if (currentMon.getSelectedMove().getName().equals("Pokeball")) {
-                System.out.println(currentMon.ot + " throws POKeBALL, but that MF broke free :(");
-                continue;
-            }
-
-
-            System.out.println("");
-            System.out.println("**************************************************");
-            System.out.println(currentMon + " used " + currentMon.getSelectedMove().getName() + "!");
-
-            double randomFactor = 0.85 + (Math.random() * 0.15);
-            int damagePart1;
-
-            if (currentMon.getCurrentHP() > 0) {
-                if (currentMon.getSelectedMove().getPower() > 0) {
-                    rawDamage = ((((2.0 * currentMon.getLevel()) / 5) + 2) * currentMon.getSelectedMove().getPower() * ((double) currentMon.getAtk() / currentMon.getSelectedTarget().getDef()) / 50) + 2;
-
-                    if (currentMon.getType().equals(currentMon.getSelectedMove().getType()) ||
-                       (currentMon.getType2() != null && currentMon.getType2().equals(currentMon.getSelectedMove().getType()))) {
-
-                        rawDamage *= 1.5; // STAB!
-                    }
-
-                    if (currentMon.getSelectedTarget().weaknesses.contains(currentMon.getSelectedMove().getType())) {
-                        System.out.println("It's super effective!");
-                        rawDamage *= 2;
-                    }
-
-                    if (currentMon.getSelectedTarget().resistances.contains(currentMon.getSelectedMove().getType())) {
-                        System.out.println("It's not very effective...");
-                        rawDamage *= .5;
-                    }
-
-
-                    rawDamage *= randomFactor;
-                    damagePart1 = (int) Math.round(rawDamage);
-                } else {
-                    damagePart1 = 0;
-                }
-
-//                System.out.println("DEBUG Player.useMoves(): damage = " + damagePart1);
-                currentMon.getSelectedTarget().setCurrentHp(currentMon.getSelectedTarget().getCurrentHP() - damagePart1);
-
-                System.out.println("**************************************************");
-                System.out.println("");
-
-                GameEngine.delay(750);
-
-                faint(currentMon.getSelectedTarget());
-            }
-        }
-    }
-
-    private void resolveTurn() {
-
-        useMoves();
-    }
 
     private Pokemon selectTarget() {
 
         for (int i = 0; i < battle.battleArray.length; i++) {
-                System.out.println("[ " + (i + 1) + " ] " + battle.battleArray[i]);
+            System.out.println("[ " + (i + 1) + " ] " + battle.battleArray[i]);
         }
 
         boolean selectTarget = true;
@@ -537,31 +456,29 @@ public class Player {
                 System.out.println("while loop inside Player.selectTarget()");
             }
         }
-//        System.out.println("Selected target: " + selectedTarget);
+    //        System.out.println("Selected target: " + selectedTarget);
         return selectedTarget;
     }
 
-    private void npcSelectTarget() {
 
-        Pokemon npc = null;
 
-        for (int i = 0; i < battle.battleArray.length; i++) {
-            if (battle.battleArray[i].isNpc) {
-                if (battle.battleArray[i].hashCode() != selectedPokemon.hashCode()) {
-                    npc = battle.battleArray[i];
 
-                    boolean npcSelectTarget = true;
-                    while (npcSelectTarget) {
-                        int rng = random.nextInt(0, battle.battleArray.length);
-                        npc.setSelectedTarget(battle.battleArray[rng]);
-                        if (npc.getSelectedTarget().hashCode() != battle.battleArray[i].hashCode()) {
-                            npcSelectTarget = false;
-                        }
-                    }
-                }
-            }
-        }
-    }
+    //        for (int i = 0; i < battle.battleArray.length; i++) {
+    //            if (battle.battleArray[i].isNpc) {
+    //                if (battle.battleArray[i].hashCode() != selectedPokemon.hashCode()) {
+    //                    npc = battle.battleArray[i];
+    //
+    //                    boolean npcSelectTarget = true;
+    //                    while (npcSelectTarget) {
+    //                        int rng = random.nextInt(0, battle.battleArray.length);
+    //                        npc.setSelectedTarget(battle.battleArray[rng]);
+    //                        if (npc.getSelectedTarget().hashCode() != battle.battleArray[i].hashCode()) {
+    //                            npcSelectTarget = false;
+    //                        }
+    //                    }
+    //                }
+    //            }
+    //        }
 
     public int getLevel() {
         return -1;
@@ -636,4 +553,13 @@ public class Player {
     public Inventory getInventory() {
         return inventory;
     }
+
+    public boolean getIsNpc() {
+        return isNpc;
+    }
+
+    public void setIsNpc(boolean npc) {
+        isNpc = npc;
+    }
+
 }

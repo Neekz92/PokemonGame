@@ -24,7 +24,7 @@ public class Route2TallGrass extends POI {
 
             player.setSelectedPokemon(player.team[0]);
             battle.addToRawPokemonArray(player.getSelectedPokemon());
-            battle.incomingPokemon_fromTrainer = player.getSelectedPokemon();
+            battle.incomingPokemon_fromTrainer1 = player.getSelectedPokemon();
             player.setActivePokemon(player.getSelectedPokemon());
 
             wildEncounterSetup();
@@ -62,7 +62,7 @@ public class Route2TallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else if (rngEncounter <= 50) {
@@ -76,7 +76,7 @@ public class Route2TallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else if (rngEncounter <= 60) {
@@ -90,7 +90,7 @@ public class Route2TallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
 
         }
 
@@ -105,7 +105,7 @@ public class Route2TallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else if (rngEncounter <= 85) {
@@ -119,7 +119,7 @@ public class Route2TallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
 
         else {
@@ -133,7 +133,7 @@ public class Route2TallGrass extends POI {
             System.out.println("");
             System.out.println("");
 
-            gameEngine.turnOrder();
+//            gameEngine.turnOrder();
         }
     }
 }
