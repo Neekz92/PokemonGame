@@ -72,7 +72,7 @@ public class Route1TallGrass extends POI {
         Pokemon bellsprout = new Bellsprout(gameEngine, rng2);
 
         int rngEncounter = random.nextInt(1, 101);
-        if (rngEncounter <= 30) {
+        if (rngEncounter <= 40) {
             System.out.println("A wild " + pidgey + " has appeared!");
             pidgey.setLocation(player.getLocation());
             battle.addToRawPokemonArray(pidgey);
@@ -87,7 +87,7 @@ public class Route1TallGrass extends POI {
 //            gameEngine.turnOrder();
         }
 
-        else if (rngEncounter <= 60) {
+        else if (rngEncounter <= 70) {
             System.out.println("A wild " + rattata + " has appeared!");
             rattata.setLocation(player.getLocation());
             battle.addToRawPokemonArray(rattata);
@@ -102,7 +102,7 @@ public class Route1TallGrass extends POI {
 //            gameEngine.turnOrder();
         }
 
-        else if (rngEncounter <= 80) {
+        else if (rngEncounter <= 85) {
             System.out.println("A wild " + oddish + " has appeared!");
             oddish.setLocation(player.getLocation());
             battle.addToRawPokemonArray(oddish);
