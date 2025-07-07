@@ -184,7 +184,7 @@ public class GameEngine {
             currentPlayer.setLocation(map.findLocation(currentPlayer));
             currentPlayer.getLocation().add(currentPlayer);
             System.out.println("****************************************************************");
-            System.out.println(currentPlayer.getName() + " moved north to " + currentPlayer.getLocation().getName());
+            System.out.println(currentPlayer.getName() + " moved east to " + currentPlayer.getLocation().getName());
             System.out.println("****************************************************************");
             activateLocation();
         }
@@ -220,7 +220,7 @@ public class GameEngine {
             currentPlayer.setLocation(map.findLocation(currentPlayer));
             currentPlayer.getLocation().add(currentPlayer);
             System.out.println("****************************************************************");
-            System.out.println(currentPlayer.getName() + " moved north to " + currentPlayer.getLocation().getName());
+            System.out.println(currentPlayer.getName() + " moved west to " + currentPlayer.getLocation().getName());
             System.out.println("****************************************************************");
             activateLocation();
         }

@@ -119,6 +119,8 @@ public class Pokemon extends Player {
 
     public static Move furyAttack = new FuryAttack();
 
+    public static Move confusion = new Confusion();
+
     // the constructor lies below
     public Pokemon(GameEngine gameEngine, int xp) {
 

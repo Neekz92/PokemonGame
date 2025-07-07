@@ -23,13 +23,8 @@ public class Battle {
 
     int amountOfParticipants;
     Pokemon[] rawPokemonArray;
-    int amountOfPokemon;
-    //public Pokemon[] battleArray;
 
-    int highestSpeed;
     private double rawDamage;
-
-    private int xp;
 
     public Battle() {
 
@@ -40,7 +35,6 @@ public class Battle {
         amountOfParticipants = 0;
         rawPokemonArray = new Pokemon[amountOfParticipants];
 
-        //battleArray = new Pokemon[amountOfParticipants];
     }
 
     public boolean contains(Player player) {
@@ -64,45 +58,6 @@ public class Battle {
         rawPokemonArray = rawPokemonArrayClone;
     }
 
-//    public void addToBattleArray(Pokemon pokemon) {
-//
-//        amountOfPokemon ++;
-//        Pokemon[] battleArrayClone = new Pokemon[amountOfPokemon];
-//        for (int i = 0; i < battleArray.length; i++) {
-//            battleArrayClone[i] = battleArray[i];
-//        }
-//        battleArrayClone[amountOfPokemon - 1] = pokemon;
-//        battleArray = battleArrayClone;
-//    }
-
-//    private int findIndexInBattleArray(Pokemon pokemon) {
-//
-//        for (int i = 0; i < battleArray.length; i++) {
-//            if (battleArray[i].hashCode() == pokemon.hashCode()) {
-//                return i;
-//            }
-//        }
-//        return -1;
-//    }
-
-//    public void removeFromBattleArray(Pokemon pokemon) {
-//
-//        int index = findIndexInBattleArray(pokemon);
-//
-//        amountOfPokemon --;
-//        Pokemon[] battleArrayClone = new Pokemon[amountOfPokemon];
-//
-//        for (int i = 0; i < index; i++) {
-//            battleArrayClone[i] = battleArray[i];
-//        }
-//
-//        for (int i = index; i < battleArrayClone.length; i++) {
-//            battleArrayClone[i] = battleArray[i + 1];
-//        }
-//
-//        battleArray = battleArrayClone;
-//    }
-
     private int findIndexInPlayerArray(Pokemon pokemon) {
 
         for (int i = 0; i < rawPokemonArray.length; i++) {
@@ -116,8 +71,6 @@ public class Battle {
     public void removeFromRawPokemonArray(Pokemon pokemon) {
 
         int index = findIndexInPlayerArray(pokemon);
-
-//        System.out.println("Removing " + pokemon.getName() + " from the rawPokemonArray. DEBUG from Battle.removeFromRrawArray()");
 
         amountOfParticipants --;
         Pokemon[] rawPokemonArrayClone = new Pokemon[amountOfParticipants];
@@ -243,57 +196,52 @@ public class Battle {
                 System.out.println("");
                 if (currentMon.getSelectedMove() != null) {
                     System.out.println("**************************************************");
-                    System.out.println(currentMon + " used ");
+                    System.out.println(currentMon + " used " + currentMon.getSelectedMove().getName());
                 }
 
-                if (currentMon.getSelectedMove() != null) {
-                    System.out.println(currentMon.getSelectedMove().getName() + "!");
+                double randomFactor = 0.85 + (Math.random() * 0.15);
+                int damagePart1;
 
-                    double randomFactor = 0.85 + (Math.random() * 0.15);
-                    int damagePart1;
+                if (currentMon.getCurrentHP() > 0) {
+                    if (currentMon.getSelectedMove().getPower() > 0) {
+                        rawDamage = ((((2.0 * currentMon.getLevel()) / 5) + 2) * currentMon.getSelectedMove().getPower() * ((double) currentMon.getAtk() / currentMon.getSelectedTarget().getDef()) / 50) + 2;
 
-                    if (currentMon.getCurrentHP() > 0) {
-                        if (currentMon.getSelectedMove().getPower() > 0) {
-                            rawDamage = ((((2.0 * currentMon.getLevel()) / 5) + 2) * currentMon.getSelectedMove().getPower() * ((double) currentMon.getAtk() / currentMon.getSelectedTarget().getDef()) / 50) + 2;
+                        if (currentMon.getType().equals(currentMon.getSelectedMove().getType()) ||
+                                (currentMon.getType2() != null && currentMon.getType2().equals(currentMon.getSelectedMove().getType()))) {
 
-                            if (currentMon.getType().equals(currentMon.getSelectedMove().getType()) ||
-                                    (currentMon.getType2() != null && currentMon.getType2().equals(currentMon.getSelectedMove().getType()))) {
-
-                                rawDamage *= 1.5; // STAB!
-                            }
-
-                            if (currentMon.getSelectedTarget().weaknesses.contains(currentMon.getSelectedMove().getType())) {
-                                System.out.println("It's super effective!");
-                                rawDamage *= 2;
-                            }
-
-                            if (currentMon.getSelectedTarget().resistances.contains(currentMon.getSelectedMove().getType())) {
-                                System.out.println("It's not very effective...");
-                                rawDamage *= .5;
-                            }
-
-
-                            rawDamage *= randomFactor;
-                            damagePart1 = (int) Math.round(rawDamage);
-                        } else {
-                            damagePart1 = 0;
+                            rawDamage *= 1.5; // STAB!
                         }
 
-                        //                System.out.println("DEBUG Player.useMoves(): damage = " + damagePart1);
-                        currentMon.getSelectedTarget().setCurrentHp(currentMon.getSelectedTarget().getCurrentHP() - damagePart1);
-                        System.out.println(currentMon.getSelectedTarget().getName() + " takes " + damagePart1 + " damage. They have: " + currentMon.getSelectedTarget().getCurrentHP() + " hp remaining");
-
-                        System.out.println("**************************************************");
-                        System.out.println("");
-
-                        GameEngine.delay(750);
-
-                        faint(currentMon.getSelectedTarget());
-
-                        if (areNpcFainted()) {
-                            distributeReward();
-                            return;  // exit useMoves() early, stop further moves
+                        if (currentMon.getSelectedTarget().weaknesses.contains(currentMon.getSelectedMove().getType())) {
+                            System.out.println("It's super effective!");
+                            rawDamage *= 2;
                         }
+
+                        if (currentMon.getSelectedTarget().resistances.contains(currentMon.getSelectedMove().getType())) {
+                            System.out.println("It's not very effective...");
+                            rawDamage *= .5;
+                        }
+
+
+                        rawDamage *= randomFactor;
+                        damagePart1 = (int) Math.round(rawDamage);
+                    } else {
+                        damagePart1 = 0;
+                    }
+
+                    currentMon.getSelectedTarget().setCurrentHp(currentMon.getSelectedTarget().getCurrentHP() - damagePart1);
+                    System.out.println(currentMon.getSelectedTarget().getName() + " takes " + damagePart1 + " damage. They have: " + currentMon.getSelectedTarget().getCurrentHP() + " hp remaining");
+
+                    System.out.println("**************************************************");
+                    System.out.println("");
+
+                    GameEngine.delay(750);
+
+                    faint(currentMon.getSelectedTarget());
+
+                    if (areNpcFainted()) {
+                        distributeReward();
+                        return;  // exit useMoves() early, stop further moves
                     }
                 }
             }
@@ -304,7 +252,6 @@ public class Battle {
 
         if (pokemon.getCurrentHP() == 0) {
             System.out.println(pokemon.getName() + " fainted!");
-//            pokemon.battle.removeFromBattleArray(pokemon);
             pokemon.battle.removeFromRawPokemonArray(pokemon);
             distributeReward();
         }
@@ -322,19 +269,11 @@ public class Battle {
                 currentMon.updateLevel();
                 currentMon.setStats();
                 removeFromRawPokemonArray(currentMon);
-
-//                if (rawPokemonArray.length == 0) {
-//                    for (int j = 0; j < rawPokemonArray.length; j++) {
-//                        rawPokemonArray[j].isInBattle = false;
-//                        rawPokemonArray[j].setActivePokemon(null);
-//                    }
-//                }
             }
         }
 
         if (areNpcFainted()) {
             for (int i = playerArray.size() - 1; i >= 0; i--) {
-                System.out.println("Removing " + playerArray.get(i));
                 playerArray.get(i).isInBattle = false;
                 playerArray.get(i).setActivePokemon(null);
                 playerArray.get(i).getLocation().poi.setHasOngoingBattle(false);

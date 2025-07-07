@@ -81,6 +81,7 @@ public class ViridianForestTallGrass extends POI {
         Pokemon butterfree = new Butterfree(gameEngine, rng2);
         Pokemon beedrill = new Beedrill(gameEngine, rng2);
         Pokemon bulbasaur = new Bulbasaur(gameEngine, rng2);
+        Pokemon mewtwo = new Mewtwo(gameEngine, rng2);
 
         int rngEncounter = random.nextInt(1, 101);
         if (rngEncounter <= 24) {

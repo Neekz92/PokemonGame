@@ -311,6 +311,13 @@ public class Player {
         battle = location.poi.getBattle();
         System.out.println("");
 
+        System.out.println("");
+        System.out.println("********************");
+        System.out.println(getName() + "'s turn");
+        System.out.println("********************");
+        System.out.println("");
+        System.out.println("");
+
         if (battle.getAmountOfNPC() == 1) {
             System.out.println(battle.incomingPokemon_wild + " | Level: " + battle.incomingPokemon_wild.getLevel() + " | HP: " + battle.incomingPokemon_wild.getCurrentHP() + "/ " + battle.incomingPokemon_wild.getHp());
             System.out.println("===============================");
@@ -355,6 +362,9 @@ public class Player {
                         battleMenu = false;
                         break;
                     case 4:
+                        run();
+                        battleMenu = false;
+                        break;
                     default:
                 }
             }
@@ -389,8 +399,6 @@ public class Player {
         System.out.println("");
         selectMove();
         selectTarget();
-//        npcSelectMove();
-//        resolveTurn();
     }
 
     private void useItemInBattle() {
@@ -405,13 +413,30 @@ public class Player {
                 return;
             }
 
-            //setSelectedItem(inventory.getItemArray()[input - 1]);
             selectedItem.use();
             battle.npcSelectMove();
-            //npcSelectTarget();
-//            resolveTurn();
             useItemInBattle = false;
         }
+    }
+
+    private void run() {
+
+        battle.removeFromRawPokemonArray(getActivePokemon());
+        getActivePokemon().isInBattle = false;
+
+        battle.playerArray.remove(this);
+        isInBattle = false;
+
+        if (battle.getAmountOfPlayers() == 0) {
+            getLocation().poi.setHasOngoingBattle(false);
+
+            for (int i = battle.rawPokemonArray.length - 1; i >= 0; i--) {
+                battle.removeFromRawPokemonArray(battle.rawPokemonArray[i]);
+                battle.playerArray.clear();
+            }
+        }
+
+        System.out.println(getActivePokemon() + " got away safely!");
     }
 
     private Move selectMove() {
@@ -430,12 +455,7 @@ public class Player {
             }
         }
         activePokemon.setSelectedMove(selectedMove);
-        System.out.println(activePokemon.getName() + " | " + activePokemon.getSelectedMove());
         return selectedMove;
-    }
-
-    private void usePokeBall() {
-
     }
 
 
@@ -461,26 +481,6 @@ public class Player {
         }
         return selectedTarget;
     }
-
-
-
-
-    //        for (int i = 0; i < battle.battleArray.length; i++) {
-    //            if (battle.battleArray[i].isNpc) {
-    //                if (battle.battleArray[i].hashCode() != selectedPokemon.hashCode()) {
-    //                    npc = battle.battleArray[i];
-    //
-    //                    boolean npcSelectTarget = true;
-    //                    while (npcSelectTarget) {
-    //                        int rng = random.nextInt(0, battle.battleArray.length);
-    //                        npc.setSelectedTarget(battle.battleArray[rng]);
-    //                        if (npc.getSelectedTarget().hashCode() != battle.battleArray[i].hashCode()) {
-    //                            npcSelectTarget = false;
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //        }
 
     public int getLevel() {
         return -1;
