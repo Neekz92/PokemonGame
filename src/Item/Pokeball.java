@@ -17,8 +17,21 @@ public class Pokeball extends Item {
     @Override
     public void use() {
 
-        getPlayer().setSelectedTarget(getPlayer().battle.incomingPokemon_wild);
-        getPlayer().getSelectedPokemon().setSelectedMove(new ThrowPokeball());
-        //System.out.println(getPlayer().getName() + " throws a POKeBALL");
+        if (!getPlayer().isInBattle) {
+            System.out.println("You can't use that here.");
+            System.out.println("");
+            return;
+        }
+
+        else {
+
+            if (getPlayer().getInventory().contains(this)) {
+                getPlayer().getInventory().decrease(this);
+                getPlayer().setSelectedTarget(getPlayer().battle.incomingPokemon_wild);
+                ThrowPokeball pokeball = new ThrowPokeball();
+                pokeball.setPlayer(getPlayer());
+                getPlayer().getSelectedPokemon().setSelectedMove(pokeball);
+            }
+        }
     }
 }

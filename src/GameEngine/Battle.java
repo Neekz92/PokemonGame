@@ -188,7 +188,13 @@ public class Battle {
                 }
 
                 if (currentMon.getSelectedMove() != null && currentMon.getSelectedMove().getName().equals("Pokeball")) {  //  use pokeball
-                    System.out.println(currentMon.ot + " throws POKeBALL!");
+                    System.out.println(currentMon.ot + " used POKe BALL!");
+                    System.out.println("");
+                    GameEngine.delay(2500);
+                    System.out.println("All right! " + currentMon.getSelectedTarget() + " was caught!");
+                    currentMon.getPlayer().addPokemon(currentMon.getSelectedTarget());
+                    removeFromRawPokemonArray(currentMon.getSelectedTarget());
+                    distributeReward();
 
                     continue;
                 }

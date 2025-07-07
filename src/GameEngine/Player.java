@@ -139,6 +139,7 @@ public class Player {
         team = teamClone;
 
         pokemon.ot = name;
+        pokemon.setPlayer(this);
         pokemon.setIsNpc(false);
 
         System.out.println("Do you want to give a nickname to " + pokemon.getSpecies() + "?");
@@ -204,7 +205,6 @@ public class Player {
                         System.out.println("");
                         inventory.openInventory();
                         startMenu = false;
-                        gameEngine.standardTurn();
                         break;
 
                 }
@@ -358,7 +358,7 @@ public class Player {
                     case 2:
                     case 3:
                         inventory.openInventory();
-                        useItemInBattle();
+                        selectTarget();
                         battleMenu = false;
                         break;
                     case 4:
@@ -416,6 +416,7 @@ public class Player {
             selectedItem.use();
             battle.npcSelectMove();
             useItemInBattle = false;
+            return;
         }
     }
 

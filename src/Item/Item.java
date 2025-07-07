@@ -21,6 +21,7 @@ public class Item {
 
         this.name = other.name;
         this.sellPrice = other.sellPrice;
+        this.player = other.player;
     }
 
     public Item cloneItem() {

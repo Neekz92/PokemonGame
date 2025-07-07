@@ -13,6 +13,7 @@ public class Pokemon extends Player {
 
     Random random;
 
+    Player player;
     public String ot;
     public boolean isNpc;
 
@@ -756,5 +757,13 @@ public class Pokemon extends Player {
 
     public void setIsNpc(boolean isNpc) {
         this.isNpc = isNpc;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

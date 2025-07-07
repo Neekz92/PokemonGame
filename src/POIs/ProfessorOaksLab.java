@@ -48,9 +48,7 @@ public class ProfessorOaksLab extends POI {
                         case 1:
                             System.out.println(gameEngine.getPlayer() + " received a BULBASAUR!");
                             Pokemon bulbasaur = new Bulbasaur(gameEngine,135);
-//                            bulbasaur.addMove(Pokemon.growl);
-//                            bulbasaur.addMove(Pokemon.tackle);
-//                            bulbasaur.addMove(Pokemon.vineWhip);
+
                             gameEngine.getPlayer().addPokemon(bulbasaur);
                             gameEngine.getPlayer().receivedStarter = true;
                             selectStarter = false;
@@ -58,9 +56,7 @@ public class ProfessorOaksLab extends POI {
                         case 2:
                             System.out.println(gameEngine.getPlayer() + " received a CHARMANDER!");
                             Pokemon charmander = new Charmander(gameEngine,135);
-//                            charmander.addMove(Pokemon.growl);
-//                            charmander.addMove(Pokemon.scratch);
-//                            charmander.addMove(Pokemon.ember);
+
                             gameEngine.getPlayer().addPokemon(charmander);
                             gameEngine.getPlayer().receivedStarter = true;
                             selectStarter = false;
@@ -68,9 +64,7 @@ public class ProfessorOaksLab extends POI {
                         case 3:
                             System.out.println(gameEngine.getPlayer() + " received a SQUIRTLE!");
                             Pokemon squirtle = new Squirtle(gameEngine,135);
-//                            squirtle.addMove(Pokemon.tackle);
-//                            squirtle.addMove(Pokemon.tailWhip);
-//                            squirtle.addMove(Pokemon.waterGun);
+
                             gameEngine.getPlayer().addPokemon(squirtle);
                             gameEngine.getPlayer().receivedStarter = true;
                             selectStarter = false;

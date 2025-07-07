@@ -2,14 +2,20 @@ package GameEngine;
 
 import Item.*;
 
+import java.util.Scanner;
+
 public class Inventory {
 
     Player player;
+
+    Scanner scanner;
 
     int amountOfItems;
     Item[] itemArray;
 
     public Inventory() {
+
+        scanner = new Scanner(System.in);
 
         amountOfItems = 0;
         itemArray = new Item[amountOfItems];
@@ -43,7 +49,7 @@ public class Inventory {
         return itemArray;
     }
 
-    private boolean contains(Item item) {
+    public boolean contains(Item item) {
 
         for (int i = 0; i < itemArray.length; i++) {
             if (itemArray[i].getName().equals(item.getName())) {
@@ -51,6 +57,15 @@ public class Inventory {
             }
         }
         return false;
+    }
+
+    public void decrease(Item item) {
+
+        for (int i = 0; i < player.inventory.itemArray.length; i++ ) {
+            if (player.inventory.itemArray[i].getName().equals(item.getName())) {
+                itemArray[i].setAmount(itemArray[i].getAmount() - 1);
+            }
+        }
     }
 
     public Item[] getItemArray() {
@@ -73,7 +88,35 @@ public class Inventory {
         System.out.println("[ 0 ] EXIT");
         System.out.println("=================================================================");
         System.out.println("");
-        GameEngine.delay(1000);
-//        player.gameEngine.standardTurn();
+
+        selectItemFromInventory();
+
+        if (player.getSelectedItem() != null) {
+            player.selectedItem.use();
+        }
+    }
+
+    public Item selectItemFromInventory() {
+
+        boolean selectItem = true;
+        while (selectItem) {
+            try {
+                int input = scanner.nextInt();
+                scanner.nextLine();
+
+                if (input == 0) {
+                    player.setSelectedItem(null);
+                    selectItem = false;
+                    return null;
+
+                }
+                player.setSelectedItem(player.inventory.getItemArray()[input - 1]);
+                return player.getSelectedItem();
+            }
+            catch (Exception e) {
+                System.out.println("Exception from Inventory.openInventory");
+            }
+        }
+        return player.selectedItem;
     }
 }
