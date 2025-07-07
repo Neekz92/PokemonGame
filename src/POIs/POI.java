@@ -97,6 +97,7 @@ public class POI {
 
                 if (gameEngine.getPlayer().getMoney() >= gameEngine.getPlayer().getSelectedItem().getBuyPrice()) {
                     Item cloneItem = gameEngine.getPlayer().getSelectedItem().cloneItem();
+                    cloneItem.setPlayer(gameEngine.getPlayer());
                     gameEngine.getPlayer().getInventory().addItem(cloneItem);
                     gameEngine.getPlayer().setMoney(gameEngine.getPlayer().getMoney() - gameEngine.getPlayer().getSelectedItem().getBuyPrice());
                     System.out.println("");

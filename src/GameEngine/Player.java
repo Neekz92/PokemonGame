@@ -346,7 +346,7 @@ public class Player {
 
         boolean battleMenu = true;
         while (battleMenu) {
-            try {
+//            try {
                 int input = scanner.nextInt();
                 scanner.nextLine();
 
@@ -369,10 +369,10 @@ public class Player {
                 }
             }
 
-            catch (Exception e) {
-                System.out.println("Invalid: " + e + " Player.battle() | currentPlayer = " + name);
-            }
-        }
+//            catch (Exception e) {
+//                System.out.println("Invalid: " + e + " Player.battle() | currentPlayer = " + name);
+//            }
+//        }
     }
 
 
@@ -459,7 +459,7 @@ public class Player {
     }
 
 
-    private Pokemon selectTarget() {
+    public Pokemon selectTarget() {
 
 
         for (int i = 0; i < battle.rawPokemonArray.length; i++) {

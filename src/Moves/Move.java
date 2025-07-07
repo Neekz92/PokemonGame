@@ -1,5 +1,7 @@
 package Moves;
 
+import GameEngine.Player;
+
 public class Move {
 
     String name;
@@ -8,6 +10,8 @@ public class Move {
     String type;
     String category;
     int power;
+
+    private Player player;
 
     public Move(String name, String type, String category, int power, int accuracy, int pp) {
 
@@ -50,6 +54,14 @@ public class Move {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     @Override

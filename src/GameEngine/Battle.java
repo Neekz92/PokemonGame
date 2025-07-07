@@ -188,7 +188,8 @@ public class Battle {
                 }
 
                 if (currentMon.getSelectedMove() != null && currentMon.getSelectedMove().getName().equals("Pokeball")) {  //  use pokeball
-                    System.out.println(currentMon.ot + " throws POKeBALL, but that MF broke free :(");
+                    System.out.println(currentMon.ot + " throws POKeBALL!");
+
                     continue;
                 }
 
